@@ -29,7 +29,7 @@
         
         <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
 
-
+        <script src="https://use.fontawesome.com/def3009507.js"></script>
     </head>
 
     <body data-layout="detached" data-topbar="colored">
@@ -53,18 +53,6 @@
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
                                     aria-labelledby="page-header-search-dropdown">
-
-                                    <form class="p-3">
-                                        <div class="m-0">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-primary" type="submit"><i
-                                                            class="mdi mdi-magnify"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
                                 </div>
                             </div>
 
