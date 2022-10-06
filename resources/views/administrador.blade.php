@@ -75,11 +75,14 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img class="rounded-circle header-profile-user" src="{{asset('assets/img/avatar.png')}}"
                                         alt="Header Avatar">
-                                    <span class="d-none d-xl-inline-block ms-1">Nombre***</span>
+                                    <span class="d-none d-xl-inline-block ms-1">{{ auth()->user()->name }}</span>
                                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item text-danger" href="#"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> Logout</a>
+                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> Logout</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </div>
                             </div>
 
@@ -129,8 +132,8 @@
                         </div>
 
                         <div class="mt-3">
-                            <a href="#" class="text-dark fw-medium font-size-16">Nombre Aperllido***</a>
-                            <p class="text-body mt-1 mb-0 font-size-13">Cargooo***</p>
+                            <a href="#" class="text-dark fw-medium font-size-16">{{ auth()->user()->name }}</a>
+                            <p class="text-body mt-1 mb-0 font-size-13">{{ auth()->user()->cargo }}</p>
 
                         </div>
                     </div>
