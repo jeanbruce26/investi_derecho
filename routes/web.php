@@ -9,5 +9,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('login');
-});
+    return redirect()->route('administrador');
+})->middleware('auth');
+
+Auth::routes();
+
+Route::get('/administrador', [App\Http\Controllers\AdministradorController::class, 'index'])->middleware('auth')->name('administrador');
