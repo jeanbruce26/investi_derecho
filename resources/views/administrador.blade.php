@@ -3,8 +3,8 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>@yield('titulo')</title>
-        
+        <title>@yield('titulo', 'Dashboard')</title>
+
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{asset('favicon.ico')}}">
 
@@ -22,14 +22,18 @@
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css">
 
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    
+
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    
+
         <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-        
+
         <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
 
         <script src="https://use.fontawesome.com/def3009507.js"></script>
+
+        @yield('css')
+
+        @livewireStyles
     </head>
 
     <body data-layout="detached" data-topbar="colored">
@@ -63,7 +67,7 @@
                             </div>
 
                             <div class="dropdown d-inline-block">
-                                
+
                             </div>
 
                             <div class="dropdown d-inline-block">
@@ -145,21 +149,17 @@
                             </li>
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="mdi mdi-flip-horizontal"></i>
-                                    <span>Layouts</span>
+                                <a href="{{route('persona.index')}}" class="waves-effect">
+                                    <i class="mdi mdi-account"></i><span class="badge rounded-pill bg-info float-end"></span>
+                                    <span>Persona</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="true">
-                                    <li><a href="javascript: void(0);" class="has-arrow">Vertical</a>
-                                        <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="layouts-compact-sidebar.html">Compact Sidebar</a></li>
-                                            <li><a href="layouts-icon-sidebar.html">Icon Sidebar</a></li>
-                                            <li><a href="layouts-boxed.html">Boxed Layout</a></li>
-                                            <li><a href="layouts-preloader.html">Preloader</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                            </li>
 
+                            <li>
+                                <a href="{{route('proyecto.index')}}" class="waves-effect">
+                                    <i class="mdi mdi-file-document-multiple"></i><span class="badge rounded-pill bg-info float-end"></span>
+                                    <span>Proyectos</span>
+                                </a>
                             </li>
 
                         </ul>
@@ -180,7 +180,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="page-title mb-0 font-size-18">Dashboard</h4>
+                                <h4 class="page-title mb-0 font-size-18">@yield('titulo', 'Dashboard')</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
@@ -195,33 +195,7 @@
 
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-start">
-                                        <div class="avatar-sm font-size-20 me-3">
-                                            <span class="avatar-title bg-soft-primary text-primary rounded">
-                                                <i class="mdi mdi-tag-plus-outline"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-1">
-                                            <div class="font-size-16 mt-2">New Orders</div>
-                                        </div>
-                                    </div>
-                                    <h4 class="mt-4">1,368</h4>
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <p class="mb-0"><span class="text-success me-2"> 0.28% <i
-                                                        class="mdi mdi-arrow-up"></i> </span></p>
-                                        </div>
-                                        <div class="col-5 align-self-center">
-                                            <div class="progress progress-sm">
-                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 62%"
-                                                    aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @yield('content')
                         </div>
                     </div>
                     <!-- end row -->
@@ -232,7 +206,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
-                                <script>document.write(new Date().getFullYear())</script> © Sistema de Registro de Proyectos de Investigación en la Facultad de derecho y Ciencias Políticas.
+                                <script>document.write(new Date().getFullYear())</script> © Sistema de Registro de Proyectos de Investigación en la Facultad de Derecho y Ciencias Políticas.
                             </div>
                         </div>
                     </div>
@@ -270,6 +244,9 @@
 
     <script src="{{asset('assets/js/app.js')}}"></script>
 
+    @stack('js')
+    @yield('javascript')
+    @livewireScripts
     </body>
 
 </html>

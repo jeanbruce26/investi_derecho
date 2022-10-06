@@ -22,6 +22,7 @@ class Persona extends Model
         'persona_correo',
         'persona_celular',
         'persona_grado',
+        'persona_docente',
     ];
 
     public $timestamps = false;
