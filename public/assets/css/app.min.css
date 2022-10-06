@@ -1330,18 +1330,6 @@ body[data-layout="detached"]
     + .breadcrumb-item::before,
 body[data-layout="detached"] .page-title-box .breadcrumb-item.active {
     color: rgba(255, 255, 255, 0.6);
-}
-@media (max-width: 991.98px) {
-    body[data-topbar="colored"] #page-topbar {
-        background: -webkit-gradient(
-            linear,
-            left top,
-            right top,
-            from(#273c92),
-            to(#293e92)
-        );
-        background: linear-gradient(to right, #273c92, #293e92);
-    }
 } /*!
  * Waves v0.7.6
  * http://fian.my.id/Waves 

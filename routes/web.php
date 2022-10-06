@@ -15,3 +15,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/administrador', [App\Http\Controllers\AdministradorController::class, 'index'])->middleware('auth')->name('administrador');
+
