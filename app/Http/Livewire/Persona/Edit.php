@@ -41,8 +41,8 @@ class Edit extends Component
     {
         if($this->tipo_documento == 1){
             $this->validateOnly($propertyName, [
-                'tipo_documento' => 'required|numeric',
-                'numero_documento' => 'required|digits:8',
+                'tipo_documento' => 'nullable|numeric',
+                'numero_documento' => 'nullable|digits:8',
                 'nombres' => 'required|string',
                 'apellidos' => 'required|string',
                 'genero' => 'nullable|string',
@@ -53,8 +53,8 @@ class Edit extends Component
             ]);
         }else{
             $this->validateOnly($propertyName, [
-                'tipo_documento' => 'required|numeric',
-                'numero_documento' => 'required|digits:9',
+                'tipo_documento' => 'nullable|numeric',
+                'numero_documento' => 'nullable|digits:9',
                 'nombres' => 'required|string',
                 'apellidos' => 'required|string',
                 'genero' => 'nullable|string',
@@ -72,8 +72,8 @@ class Edit extends Component
 
         if($this->tipo_documento == 1){
             $this->validate([
-                'tipo_documento' => 'required|numeric',
-                'numero_documento' => 'required|digits:8',
+                'tipo_documento' => 'nullable|numeric',
+                'numero_documento' => 'nullable|digits:8',
                 'nombres' => 'required|string',
                 'apellidos' => 'required|string',
                 'genero' => 'nullable|string',
@@ -84,8 +84,8 @@ class Edit extends Component
             ]);
         }else{
             $this->validate([
-                'tipo_documento' => 'required|numeric',
-                'numero_documento' => 'required|digits:9',
+                'tipo_documento' => 'nullable|numeric',
+                'numero_documento' => 'nullable|digits:9',
                 'nombres' => 'required|string',
                 'apellidos' => 'required|string',
                 'genero' => 'nullable|string',

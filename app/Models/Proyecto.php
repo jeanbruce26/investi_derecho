@@ -21,6 +21,9 @@ class Proyecto extends Model
         'tipo_financiamiento_id',
         'proyecto_financiamiento',
         'proyecto_monto',
+        'proyecto_fecha_presentacion',
+        'proyecto_fecha_fin',
+        'convocatoria_id',
     ];
 
     public $timestamps = false;
@@ -35,5 +38,11 @@ class Proyecto extends Model
     public function TipoFinanciamiento(){
         return $this->belongsTo(TipoFinanciamiento::class,
         'tipo_financiamiento_id','tipo_financiamiento_id');
+    }
+
+    // Convocatoria
+    public function Convocatoria(){
+        return $this->belongsTo(Convocatoria::class,
+        'convocatoria_id','convocatoria_id');
     }
 }

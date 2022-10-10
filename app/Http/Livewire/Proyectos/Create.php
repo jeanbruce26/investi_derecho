@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Proyectos;
 
 use App\Models\CategoriaProyecto;
+use App\Models\Convocatoria;
 use App\Models\Proyecto;
 use App\Models\TipoFinanciamiento;
 use Livewire\Component;
@@ -16,6 +17,9 @@ class Create extends Component
     public $financiamiento = false;
     public $tipo_financiamiento;
     public $monto_financiamiento;
+    public $convocatoria;
+    public $fecha_inicio;
+    public $fecha_fin;
 
     public function updated($propertyName){
         if($this->financiamiento == false){
@@ -31,10 +35,13 @@ class Create extends Component
             'titulo' => 'required|string',
             'resumen' => 'required|string',
             'categoria' => 'required|numeric',
-            'estado' => 'required|numeric',
+            'estado' => 'required|string',
             'financiamiento' => 'nullable',
             'tipo_financiamiento' => 'nullable|numeric',
             'monto_financiamiento' => 'nullable|numeric',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'nullable|date',
+            'convocatoria' => 'required|numeric',
         ]);
     }
 
@@ -42,21 +49,42 @@ class Create extends Component
     {
         // dd($this->all());
 
-        $this->validate([
-            'titulo' => 'required|string',
-            'resumen' => 'required|string',
-            'categoria' => 'required|numeric',
-            'estado' => 'required|numeric',
-            'financiamiento' => 'nullable',
-            'tipo_financiamiento' => 'nullable|numeric',
-            'monto_financiamiento' => 'nullable|numeric',
-        ]);
+        if($this->financiamiento == false){
+            $this->validate([
+                'titulo' => 'required|string',
+                'resumen' => 'required|string',
+                'categoria' => 'required|numeric',
+                'estado' => 'required|string',
+                'financiamiento' => 'nullable',
+                'tipo_financiamiento' => 'nullable|numeric',
+                'monto_financiamiento' => 'nullable|numeric',
+                'fecha_inicio' => 'required|date',
+                'fecha_fin' => 'nullable|date',
+                'convocatoria' => 'required|numeric',
+            ]);
+        }else{
+            $this->validate([
+                'titulo' => 'required|string',
+                'resumen' => 'required|string',
+                'categoria' => 'required|numeric',
+                'estado' => 'required|string',
+                'financiamiento' => 'nullable',
+                'fecha_inicio' => 'required|date',
+                'fecha_fin' => 'nullable|date',
+                'convocatoria' => 'required|numeric',
+                'tipo_financiamiento' => 'required|numeric',
+                'monto_financiamiento' => 'required|numeric',
+            ]);
+        }
 
         $proyecto = Proyecto::create([
             "proyecto_titulo" => $this->titulo,
             "proyecto_resumen" => $this->resumen,
             "proyecto_estado" => $this->estado,
             "categoria_proyecto_id" => $this->categoria,
+            "proyecto_fecha_presentacion" => $this->fecha_inicio,
+            "proyecto_fecha_fin" => $this->fecha_fin,
+            "convocatoria_id" => $this->convocatoria,
         ]);
 
         $proyecto = Proyecto::find($proyecto->proyecto_id);
@@ -78,11 +106,12 @@ class Create extends Component
     {
         $cate_proyect = CategoriaProyecto::all();
         $tipo_financi = TipoFinanciamiento::all();
+        $convo = Convocatoria::all();
 
         return view('livewire.proyectos.create', [
             'cate_proyect' => $cate_proyect,
             'tipo_financi' => $tipo_financi,
-
+            'convo' => $convo,
         ]);
     }
 }
