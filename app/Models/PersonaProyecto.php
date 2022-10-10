@@ -23,6 +23,12 @@ class PersonaProyecto extends Model
 
     public $timestamps = false;
 
+    // Persona
+    public function Persona(){
+        return $this->belongsTo(Persona::class,
+        'persona_id','persona_id');
+    }
+
     // Proyecto
     public function Proyecto(){
         return $this->belongsTo(Proyecto::class,
@@ -41,7 +47,7 @@ class PersonaProyecto extends Model
         'categoria_investigacion_id','categoria_investigacion_id');
     }
 
-    // Categoria Docente 
+    // Categoria Docente
     public function CategoriaDocente(){
         return $this->belongsTo(CategoriaDocente::class,
         'categoria_docente_id','categoria_docente_id');

@@ -25,7 +25,7 @@ class Edit extends Component
         $this->resumen = $proyecto->proyecto_resumen;
         $this->categoria = $proyecto->categoria_proyecto_id;
         $this->estado = $proyecto->proyecto_estado;
-        if($proyecto->proyecto_financiamiento == 1){
+        if($proyecto->proyecto_financiamiento == 'FINANCIADO'){
             $this->financiamiento = true;
         }else{
             $this->financiamiento = false;
@@ -75,11 +75,11 @@ class Edit extends Component
         $proyecto->proyecto_estado = $this->estado;
         $proyecto->categoria_proyecto_id = $this->categoria;
         if($this->financiamiento == true){
-            $proyecto->proyecto_financiamiento = 1;
+            $proyecto->proyecto_financiamiento = 'FINANCIADO';
             $proyecto->tipo_financiamiento_id = $this->tipo_financiamiento;
             $proyecto->proyecto_monto = $this->monto_financiamiento;
         }else{
-            $proyecto->proyecto_financiamiento = 2;
+            $proyecto->proyecto_financiamiento = 'NO FINANCIADO';
             $proyecto->tipo_financiamiento_id = $this->tipo_financiamiento;
             $proyecto->proyecto_monto = $this->monto_financiamiento;
         }

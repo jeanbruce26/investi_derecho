@@ -31,6 +31,8 @@
 
         <script src="https://use.fontawesome.com/def3009507.js"></script>
 
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
         @yield('css')
 
         @livewireStyles
@@ -146,7 +148,7 @@
 
                             <li>
                                 <a href="/" class="waves-effect">
-                                    <i class="mdi mdi-airplay"></i><span class="badge rounded-pill bg-info float-end"></span>
+                                    <i class="mdi mdi-view-dashboard-outline"></i><span class="badge rounded-pill bg-info float-end"></span>
                                     <span>Dashboard</span>
                                 </a>
                             </li>
@@ -185,11 +187,7 @@
                             <div class="page-title-box d-flex align-items-center justify-content-between">
                                 <h4 class="page-title mb-0 font-size-18">@yield('titulo', 'Dashboard')</h4>
 
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item active text-white">Bienvenidos al <strong>Sistema de Registro de Proyectos de Investigación</strong></li>
-                                    </ol>
-                                </div>
+                                @yield('sub-titulo')
 
                             </div>
                         </div>
@@ -244,6 +242,12 @@
     <script src="{{asset('assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js')}}"></script>
 
     <script src="{{asset('assets/js/pages/dashboard.init.js')}}"></script>
+
+    <!-- form advanced init -->
+    <script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
+
+    <!--select2 cdn-->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script src="{{asset('assets/js/app.js')}}"></script>
 

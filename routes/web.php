@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\ProyectoController;
 use Illuminate\Support\Facades\App;
@@ -18,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('administrador', [App\Http\Controllers\AdministradorController::class, 'index'])->middleware('auth')->name('administrador');
+Route::get('administrador', [AdministradorController::class, 'index'])->middleware('auth')->name('administrador');
 
 
 //Administrador

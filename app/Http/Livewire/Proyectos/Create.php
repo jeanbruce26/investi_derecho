@@ -61,11 +61,11 @@ class Create extends Component
 
         $proyecto = Proyecto::find($proyecto->proyecto_id);
         if($this->financiamiento == true){
-            $proyecto->proyecto_financiamiento = 1;
+            $proyecto->proyecto_financiamiento = 'FINANCIADO';
             $proyecto->tipo_financiamiento_id = $this->tipo_financiamiento;
             $proyecto->proyecto_monto = $this->monto_financiamiento;
         }else{
-            $proyecto->proyecto_financiamiento = 2;
+            $proyecto->proyecto_financiamiento = 'NO FINANCIADO';
         }
         $proyecto->save();
 

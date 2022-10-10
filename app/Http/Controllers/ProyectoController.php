@@ -10,8 +10,7 @@ class ProyectoController extends Controller
 {
     public function index()
     {
-        $proyecto = Proyecto::all();
-        return view('proyectos.index', compact('proyecto'));
+        return view('proyectos.index');
     }
 
     public function create()
@@ -33,5 +32,12 @@ class ProyectoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function participant($id)
+    {
+        $proyecto_id = $id;
+        $proyecto = Proyecto::find($id);
+        return view('proyectos.particpant', compact('proyecto_id','proyecto'));
     }
 }
