@@ -22,8 +22,8 @@ class Create extends Component
     {
         if($this->tipo_documento == 1){
             $this->validateOnly($propertyName, [
-                'tipo_documento' => 'required|numeric',
-                'numero_documento' => 'required|digits:8',
+                'tipo_documento' => 'nullable|numeric',
+                'numero_documento' => 'nullable|digits:8',
                 'nombres' => 'required|string',
                 'apellidos' => 'required|string',
                 'genero' => 'nullable|string',
@@ -34,8 +34,8 @@ class Create extends Component
             ]);
         }else{
             $this->validateOnly($propertyName, [
-                'tipo_documento' => 'required|numeric',
-                'numero_documento' => 'required|digits:9',
+                'tipo_documento' => 'nullable|numeric',
+                'numero_documento' => 'nullable|digits:9',
                 'nombres' => 'required|string',
                 'apellidos' => 'required|string',
                 'genero' => 'nullable|string',
@@ -53,8 +53,8 @@ class Create extends Component
 
         if($this->tipo_documento == 1){
             $this->validate([
-                'tipo_documento' => 'required|numeric',
-                'numero_documento' => 'required|digits:8|unique:persona,persona_numero_documento',
+                'tipo_documento' => 'nullable|numeric',
+                'numero_documento' => 'nullable|digits:8|unique:persona,persona_numero_documento',
                 'nombres' => 'required|string',
                 'apellidos' => 'required|string',
                 'genero' => 'nullable|string',
@@ -65,8 +65,8 @@ class Create extends Component
             ]);
         }else{
             $this->validate([
-                'tipo_documento' => 'required|numeric',
-                'numero_documento' => 'required|digits:9|unique:persona,persona_numero_documento',
+                'tipo_documento' => 'nullable|numeric',
+                'numero_documento' => 'nullable|digits:9|unique:persona,persona_numero_documento',
                 'nombres' => 'required|string',
                 'apellidos' => 'required|string',
                 'genero' => 'nullable|string',

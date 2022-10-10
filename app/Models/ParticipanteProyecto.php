@@ -14,7 +14,8 @@ class ParticipanteProyecto extends Model
     protected $table = 'participante_proyecto';
     protected $fillable = [
         'participante_proyecto_id',
-        'participante_proyecto'
+        'participante_proyecto',
+        'participante_proyecto_estado',
     ];
 
     public $timestamps = false;

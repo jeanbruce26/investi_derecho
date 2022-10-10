@@ -3,7 +3,7 @@
         <form wire:submit.prevent="crearPersona">
 
             <div class="mb-3 row">
-                <label class="col-md-3 col-form-label">Tipo de documento <span class="text-danger">*</span></label>
+                <label class="col-md-3 col-form-label">Tipo de documento</label>
                 <div class="col-md-9">
                     <select wire:model="tipo_documento" class="form-select @error('tipo_documento') is-invalid @enderror" aria-label="Default select example">
                         <option value="" selected>Seleccione</option>
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label class="col-md-3 col-form-label">Número de documento <span class="text-danger">*</span></label>
+                <label class="col-md-3 col-form-label">Número de documento</label>
                 <div class="col-md-9">
                     <input wire:model="numero_documento" class="form-control @error('distrito_direccion') is-invalid  @enderror" type="text" value="" placeholder="Ingrese su número de documento">
                     @error('numero_documento') <span class="error">{{ $message }}</span> @enderror

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Proyectos;
 
 use App\Models\CategoriaProyecto;
+use App\Models\Convocatoria;
 use App\Models\Proyecto;
 use App\Models\TipoFinanciamiento;
 use Livewire\Component;
@@ -17,6 +18,9 @@ class Edit extends Component
     public $tipo_financiamiento;
     public $monto_financiamiento;
     public $proyecto_id;
+    public $convocatoria;
+    public $fecha_inicio;
+    public $fecha_fin;
 
     public function mount()
     {
@@ -32,6 +36,9 @@ class Edit extends Component
         }
         $this->tipo_financiamiento = $proyecto->tipo_financiamiento_id;
         $this->monto_financiamiento = $proyecto->proyecto_monto;
+        $this->convocatoria = $proyecto->convocatoria_id;
+        $this->fecha_inicio = $proyecto->proyecto_fecha_presentacion;
+        $this->fecha_fin = $proyecto->proyecto_fecha_fin;
     }
 
     public function updated($propertyName){
@@ -48,10 +55,13 @@ class Edit extends Component
             'titulo' => 'required|string',
             'resumen' => 'required|string',
             'categoria' => 'required|numeric',
-            'estado' => 'required|numeric',
+            'estado' => 'required|string',
             'financiamiento' => 'nullable',
             'tipo_financiamiento' => 'nullable|numeric',
             'monto_financiamiento' => 'nullable|numeric',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'nullable|date',
+            'convocatoria' => 'required|numeric',
         ]);
     }
 
@@ -63,10 +73,13 @@ class Edit extends Component
             'titulo' => 'required|string',
             'resumen' => 'required|string',
             'categoria' => 'required|numeric',
-            'estado' => 'required|numeric',
+            'estado' => 'required|string',
             'financiamiento' => 'nullable',
             'tipo_financiamiento' => 'nullable|numeric',
             'monto_financiamiento' => 'nullable|numeric',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'nullable|date',
+            'convocatoria' => 'required|numeric',
         ]);
 
         $proyecto = Proyecto::find($this->proyecto_id);
@@ -94,11 +107,12 @@ class Edit extends Component
     {
         $cate_proyect = CategoriaProyecto::all();
         $tipo_financi = TipoFinanciamiento::all();
+        $convo = Convocatoria::all();
 
         return view('livewire.proyectos.edit', [
             'cate_proyect' => $cate_proyect,
             'tipo_financi' => $tipo_financi,
-
+            'convo' => $convo,
         ]);
     }
 }

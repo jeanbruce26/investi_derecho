@@ -16,6 +16,18 @@
                 </div>
             </div>
             <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">Convocatoria <span class="text-danger">*</span></label>
+                <div class="col-md-9">
+                    <select wire:model="convocatoria" class="form-select @error('convocatoria') is-invalid  @enderror" aria-label="Default select example">
+                        <option value="" selected>Seleccione</option>
+                        @foreach ($convo as $item)
+                        <option value="{{$item->convocatoria_id}}">{{$item->convocatoria}}</option>
+                        @endforeach
+                    </select>
+                    @error('convocatoria') <span class="error">{{ $message }}</span> @enderror
+                </div>
+            </div>
+            <div class="mb-3 row">
                 <label class="col-md-3 col-form-label">Categoria <span class="text-danger">*</span></label>
                 <div class="col-md-9">
                     <select wire:model="categoria" class="form-select @error('categoria') is-invalid  @enderror" aria-label="Default select example">
@@ -32,10 +44,24 @@
                 <div class="col-md-9">
                     <select wire:model="estado" class="form-select @error('estado') is-invalid  @enderror" aria-label="Default select example">
                         <option value="" selected>Seleccione</option>
-                        <option value="1">ACTIVO</option>
-                        <option value="2">INACTIVO</option>
+                        <option value="PROCESO">PROCESO</option>
+                        <option value="CULMINADO">CULMINADO</option>
                     </select>
                     @error('estado') <span class="error">{{ $message }}</span> @enderror
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">Fecha presentación <span class="text-danger">*</span></label>
+                <div class="col-md-9">
+                    <input wire:model="fecha_inicio" class="form-control @error('fecha_inicio') is-invalid  @enderror" type="date" value="">
+                    @error('fecha_inicio') <span class="error">{{ $message }}</span> @enderror
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">Fecha final</label>
+                <div class="col-md-9">
+                    <input wire:model="fecha_fin" class="form-control @error('fecha_fin') is-invalid  @enderror" type="date" value="">
+                    @error('fecha_fin') <span class="error">{{ $message }}</span> @enderror
                 </div>
             </div>
             <div class="mb-3 row">
