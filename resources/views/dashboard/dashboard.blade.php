@@ -14,36 +14,9 @@ Dashboardd
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.min.css">
 @endsection
 
 @section('content')
-{{-- <div class="col-lg-6">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Animated Progress</h4>
-            <p class="card-title-desc">Add <code class="highlighter-rounge">.animated-progess</code>
-                class with <code class="highlighter-rounge">.progress-bar</code> for animated
-                progressbar.
-            </p>
-
-            <div class="">
-                <div class="progress animated-progess mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <div class="progress animated-progess mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <div class="progress animated-progess mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <div class="progress animated-progess">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 <div class="row">
     <div class="col-xl-3">
         <div class="card">
@@ -235,12 +208,9 @@ Dashboardd
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>
 <script>
     $('#tablaDashboard').DataTable({
-        responsive: true,
-        autoWidth: false,
+        autoWidth: true,
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por páginas",
             "zeroRecords": "Nada encontrado - disculpa",
