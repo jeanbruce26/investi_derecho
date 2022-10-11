@@ -18,7 +18,32 @@ Dashboardd
 @endsection
 
 @section('content')
+{{-- <div class="col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Animated Progress</h4>
+            <p class="card-title-desc">Add <code class="highlighter-rounge">.animated-progess</code>
+                class with <code class="highlighter-rounge">.progress-bar</code> for animated
+                progressbar.
+            </p>
 
+            <div class="">
+                <div class="progress animated-progess mb-4">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="progress animated-progess mb-4">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="progress animated-progess mb-4">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="progress animated-progess">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
 <div class="row">
     <div class="col-xl-3">
         <div class="card">
@@ -146,13 +171,53 @@ Dashboardd
                                 $id = $item->persona_id;
                             @endphp
                                 <tr>
-                                    <td>{{ $item->persona_apellidos }}, {{ $item->persona_nombres }}</td>
+                                    <td>{{ $item->persona_apellidos }},<br> {{ $item->persona_nombres }}</td>
                                     @foreach ($categoriaProyecto as $item)
                                         @php
                                             $categoriaCount = App\Models\PersonaProyecto::join('proyecto','persona_proyecto.proyecto_id','=','proyecto.proyecto_id')->where('persona_proyecto.persona_id',$id)->where('proyecto.categoria_proyecto_id',$item->categoria_proyecto_id)->count('proyecto.categoria_proyecto_id');
-                                        @endphp    
-                                        
-                                        <td> {{ $categoriaCount }} </td>
+                                        @endphp
+
+                                        <td align="center">
+                                            <div class="">
+                                                <div class="fw-bold fs-5">{{ $categoriaCount }}</div>
+
+                                                @if ($categoriaCount == 0)
+                                                <div class="progress animated-progess">
+                                                    <div class="progress-bar bg-dark" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                @endif
+
+                                                @if ($categoriaCount > 0 && $categoriaCount <= 5)
+                                                <div class="progress animated-progess">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                @endif
+
+                                                @if ($categoriaCount > 5 && $categoriaCount <= 10)
+                                                <div class="progress animated-progess">
+                                                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                @endif
+
+                                                @if ($categoriaCount > 10 && $categoriaCount <= 15)
+                                                <div class="progress animated-progess">
+                                                    <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                @endif
+
+                                                @if ($categoriaCount > 15 && $categoriaCount <= 20)
+                                                <div class="progress animated-progess">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                @endif
+
+                                                @if ($categoriaCount > 20)
+                                                <div class="progress animated-progess">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </td>
                                     @endforeach
                                     <td align="center"> <a href="#" class="d-flex align-items-center justify-content-center btn btn-primary btn-sm" style="width: 35px"> <i class="bx bx-show bx-xs"></i></a> </td>
                                 </tr>
@@ -164,6 +229,7 @@ Dashboardd
         </div>
     </div>
 </div>
+
 <!-- end row -->
 @endsection
 
