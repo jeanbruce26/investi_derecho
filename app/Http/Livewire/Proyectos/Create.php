@@ -20,6 +20,8 @@ class Create extends Component
     public $convocatoria;
     public $fecha_inicio;
     public $fecha_fin;
+    public $curso;
+    public $semestre;
 
     public function updated($propertyName){
         if($this->financiamiento == false){
@@ -42,7 +44,13 @@ class Create extends Component
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'nullable|date',
             'convocatoria' => 'required|numeric',
+            'curso' => 'required|string',
+            'semestre' => 'required|string',
         ]);
+
+        if($this->categoria != 7){
+            $this->reset('curso','semestre');
+        }
     }
 
     public function crearProyecto()
@@ -61,6 +69,8 @@ class Create extends Component
                 'fecha_inicio' => 'required|date',
                 'fecha_fin' => 'nullable|date',
                 'convocatoria' => 'required|numeric',
+                'curso' => 'required|string',
+                'semestre' => 'required|string',
             ]);
         }else{
             $this->validate([
@@ -74,6 +84,8 @@ class Create extends Component
                 'convocatoria' => 'required|numeric',
                 'tipo_financiamiento' => 'required|numeric',
                 'monto_financiamiento' => 'required|numeric',
+                'curso' => 'required|string',
+                'semestre' => 'required|string',
             ]);
         }
 
@@ -94,6 +106,10 @@ class Create extends Component
             $proyecto->proyecto_monto = $this->monto_financiamiento;
         }else{
             $proyecto->proyecto_financiamiento = 'NO FINANCIADO';
+        }
+        if($this->categoria == 7){
+            $proyecto->proyecto_curso = $this->curso;
+            $proyecto->proyecto_semestre = str_replace(' ','',$this->semestre);
         }
         $proyecto->save();
 

@@ -24,6 +24,8 @@ class Proyecto extends Model
         'proyecto_fecha_presentacion',
         'proyecto_fecha_fin',
         'convocatoria_id',
+        'proyecto_curso',
+        'proyecto_semestre',
     ];
 
     public $timestamps = false;
