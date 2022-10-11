@@ -17,12 +17,14 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        $proyectoCount = Proyecto::count();
-        $personaCount = Persona::count();
+        $proyectoInvestigacionCount = Proyecto::where('categoria_proyecto_id','!=', 1)->where('categoria_proyecto_id','!=', 2)->count();
+        $proyectoPregradoCount = Proyecto::where('categoria_proyecto_id', 1)->count();
+        $proyectoPosgradoCount = Proyecto::where('categoria_proyecto_id', 2)->count();
+        $personaDocuenteCount = Persona::where('persona_docente',1)->count();
         $persona = Persona::where('persona_docente',1)->get();
         $proyecto = Proyecto::all();
         $categoriaProyecto = CategoriaProyecto::all();
-        return view('dashboard.dashboard', compact('proyectoCount', 'personaCount', 'persona', 'proyecto', 'categoriaProyecto'));
+        return view('dashboard.dashboard', compact('proyectoInvestigacionCount', 'personaDocuenteCount', 'persona', 'proyecto', 'categoriaProyecto', 'proyectoPregradoCount', 'proyectoPosgradoCount'));
     }
 
     /**
