@@ -44,8 +44,8 @@ class Create extends Component
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'nullable|date',
             'convocatoria' => 'required|numeric',
-            'curso' => 'required|string',
-            'semestre' => 'required|string',
+            'curso' => 'nullable|string',
+            'semestre' => 'nullable|string',
         ]);
 
         if($this->categoria != 7){
@@ -69,8 +69,8 @@ class Create extends Component
                 'fecha_inicio' => 'required|date',
                 'fecha_fin' => 'nullable|date',
                 'convocatoria' => 'required|numeric',
-                'curso' => 'required|string',
-                'semestre' => 'required|string',
+                'curso' => 'nullable|string',
+                'semestre' => 'nullable|string',
             ]);
         }else{
             $this->validate([

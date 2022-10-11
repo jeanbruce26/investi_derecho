@@ -37,8 +37,12 @@ class Participant extends Component
             $this->participantes = ParticipanteProyecto::where('participante_proyecto_estado',1)->get();
         }else{
             $this->proyecto_investigacion = true;
+            if($proyecto->categoria_proyecto_id == 8){
+                $this->participantes = ParticipanteProyecto::where('participante_proyecto_estado',2)->where('participante_categoria',8)->get();
+            }else{
+                $this->participantes = ParticipanteProyecto::where('participante_proyecto_estado',2)->get();
+            }
 
-            $this->participantes = ParticipanteProyecto::where('participante_proyecto_estado',2)->get();
         }
     }
 
