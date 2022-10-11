@@ -12,56 +12,31 @@ Dashboardd
 </div>
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.min.css">
+@endsection
+
 @section('content')
 
-
-{{-- <div class="row">
+<div class="row">
     <div class="col-xl-3">
         <div class="card">
             <div class="card-body">
-                <div class="d-flex align-items-start">
-                    <div class="avatar-sm font-size-20 me-3">
-                        <span class="avatar-title bg-soft-primary text-primary rounded">
-                            <i class="mdi mdi-tag-plus-outline"></i>
-                        </span>
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <p class="mb-2">Docentes Investigadores</p>
+                        <h4 class="mb-0">{{ $personaDocuenteCount }}</h4>
                     </div>
-                    <div class="flex-1">
-                        <div class="font-size-16 mt-2">Nuevos Proyectos</div>
-                    </div>
-                </div>
-                <h4 class="mt-4">{{ $proyectoCount }}</h4>
-                <div class="row">
-                    <div class="">
-                        <p ></p>
-                    </div>
-                    <div class="">
-                        <div>
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-start">
-                    <div class="avatar-sm font-size-20 me-3">
-                        <span class="avatar-title bg-soft-primary text-primary rounded">
-                            <i class="mdi mdi-account-multiple-outline"></i>
-                        </span>
-                    </div>
-                    <div class="flex-1">
-                        <div class="font-size-16 mt-2">Personas</div>
-                    </div>
-                </div>
-                <h4 class="mt-4">{{ $personaCount }}</h4>
-                <div class="row">
-                    <div class="">
-                        <p ></p>
-                    </div>
-                    <div class="">
-                        <div>
-                            <div></div>
+                    <div class="col-4">
+                        <div class="text-end">
+                            <div>
+                                2.06 % <i class="mdi mdi-arrow-up text-success ms-1"></i>
+                            </div>
+                            <div class="progress progress-sm mt-3">
+                                <div class="progress-bar" role="progressbar" style="width: 62%"
+                                    aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -69,12 +44,26 @@ Dashboardd
         </div>
     </div>
 
-    <div class="col-xl-6">
+    <div class="col-xl-3">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-4">Sales Report</h4>
-
-                <div id="line-chart" class="apex-charts"></div>
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <p class="mb-2">Proyectos de investigación</p>
+                        <h4 class="mb-0">{{ $proyectoInvestigacionCount }}</h4>
+                    </div>
+                    <div class="col-4">
+                        <div class="text-end">
+                            <div>
+                                2.06 % <i class="mdi mdi-arrow-up text-success ms-1"></i>
+                            </div>
+                            <div class="progress progress-sm mt-3">
+                                <div class="progress-bar" role="progressbar" style="width: 62%"
+                                    aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -82,14 +71,52 @@ Dashboardd
     <div class="col-xl-3">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-4">Revenue</h4>
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <p class="mb-2">Proyectos de Pregrado</p>
+                        <h4 class="mb-0">{{ $proyectoPregradoCount }}</h4>
+                    </div>
+                    <div class="col-4">
+                        <div class="text-end">
+                            <div>
+                                2.06 % <i class="mdi mdi-arrow-up text-success ms-1"></i>
+                            </div>
+                            <div class="progress progress-sm mt-3">
+                                <div class="progress-bar" role="progressbar" style="width: 62%"
+                                    aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <div id="column-chart" class="apex-charts"></div>
+    <div class="col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <p class="mb-2">Proyectos de Posgrado</p>
+                        <h4 class="mb-0">{{ $proyectoPosgradoCount }}</h4>
+                    </div>
+                    <div class="col-4">
+                        <div class="text-end">
+                            <div>
+                                2.06 % <i class="mdi mdi-arrow-up text-success ms-1"></i>
+                            </div>
+                            <div class="progress progress-sm mt-3">
+                                <div class="progress-bar" role="progressbar" style="width: 62%"
+                                    aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<!-- end row --> --}}
+<!-- end row -->
 
 <div class="row">
 
@@ -99,7 +126,7 @@ Dashboardd
                 <h4 class="card-title mb-4">Proyectos de Docentes</h4>
 
                 <div class="table-responsive">
-                    <table class="table table-centered text-dark">
+                    <table class="table table-centered text-dark" id="tablaDashboard">
                         <thead>
                             <tr>
                                 <th scope="col">DOCENTE</th>
@@ -117,35 +144,17 @@ Dashboardd
                             @foreach($persona as $item)
                             @php
                                 $id = $item->persona_id;
-
-                                // $personaProyecto = App\Models\PersonaProyecto::join('persona','persona_proyecto.persona_id','=','persona.persona_id')->join('proyecto','persona_proyecto.proyecto_id', '=', 'proyecto.proyecto_id')->where('persona_proyecto.persona_id', $id)->orderBy('persona.persona_id','DESC')->first();
-
-                                $categoriaCount1 = App\Models\PersonaProyecto::join('proyecto','persona_proyecto.proyecto_id','=','proyecto.proyecto_id')->where('persona_proyecto.persona_id',$id)->where('proyecto.categoria_proyecto_id',1)->count('proyecto.categoria_proyecto_id');
-
-                                $categoriaCount2 = App\Models\PersonaProyecto::join('proyecto','persona_proyecto.proyecto_id','=','proyecto.proyecto_id')->where('persona_proyecto.persona_id',$id)->where('proyecto.categoria_proyecto_id',2)->count('proyecto.categoria_proyecto_id');
-
-                                $categoriaCount3 = App\Models\PersonaProyecto::join('proyecto','persona_proyecto.proyecto_id','=','proyecto.proyecto_id')->where('persona_proyecto.persona_id',$id)->where('proyecto.categoria_proyecto_id',3)->count('proyecto.categoria_proyecto_id');
-
-                                $categoriaCount4 = App\Models\PersonaProyecto::join('proyecto','persona_proyecto.proyecto_id','=','proyecto.proyecto_id')->where('persona_proyecto.persona_id',$id)->where('proyecto.categoria_proyecto_id',4)->count('proyecto.categoria_proyecto_id');
-
-                                $categoriaCount5 = App\Models\PersonaProyecto::join('proyecto','persona_proyecto.proyecto_id','=','proyecto.proyecto_id')->where('persona_proyecto.persona_id',$id)->where('proyecto.categoria_proyecto_id',5)->count('proyecto.categoria_proyecto_id');
-
-                                $categoriaCount6 = App\Models\PersonaProyecto::join('proyecto','persona_proyecto.proyecto_id','=','proyecto.proyecto_id')->where('persona_proyecto.persona_id',$id)->where('proyecto.categoria_proyecto_id',6)->count('proyecto.categoria_proyecto_id');
-
-                                $categoriaCount7 = App\Models\PersonaProyecto::join('proyecto','persona_proyecto.proyecto_id','=','proyecto.proyecto_id')->where('persona_proyecto.persona_id',$id)->where('proyecto.categoria_proyecto_id',7)->count('proyecto.categoria_proyecto_id');
-
-                                // dd($categoriaCount);
                             @endphp
                                 <tr>
                                     <td>{{ $item->persona_apellidos }}, {{ $item->persona_nombres }}</td>
-                                    <td> {{ $categoriaCount1 }} </td>
-                                    <td> {{ $categoriaCount2 }} </td>
-                                    <td> {{ $categoriaCount3 }} </td>
-                                    <td> {{ $categoriaCount4 }} </td>
-                                    <td> {{ $categoriaCount5 }} </td>
-                                    <td> {{ $categoriaCount6 }} </td>
-                                    <td> {{ $categoriaCount7 }} </td>
-                                    <td class="d-flex justify-content-center align-items-center"> <a href="#" class="d-flex align-items-center btn btn-primary btn-sm"> <i class="bx bx-show"></i></a> </td>
+                                    @foreach ($categoriaProyecto as $item)
+                                        @php
+                                            $categoriaCount = App\Models\PersonaProyecto::join('proyecto','persona_proyecto.proyecto_id','=','proyecto.proyecto_id')->where('persona_proyecto.persona_id',$id)->where('proyecto.categoria_proyecto_id',$item->categoria_proyecto_id)->count('proyecto.categoria_proyecto_id');
+                                        @endphp    
+                                        
+                                        <td> {{ $categoriaCount }} </td>
+                                    @endforeach
+                                    <td align="center"> <a href="#" class="d-flex align-items-center justify-content-center btn btn-primary btn-sm" style="width: 35px"> <i class="bx bx-show bx-xs"></i></a> </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -156,5 +165,31 @@ Dashboardd
     </div>
 </div>
 <!-- end row -->
+@endsection
 
+@section('javascript')
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>
+<script>
+    $('#tablaDashboard').DataTable({
+        responsive: true,
+        autoWidth: false,
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por páginas",
+            "zeroRecords": "Nada encontrado - disculpa",
+            "info": "Mostrando la página _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros",
+            "infoFiltered": "(filtrado de _MAX_ registros totales)",
+            "search": "Buscar:",
+            "order": "desc",
+            "paginate": {
+                "next": "Siguiente",
+                "previous": "Anterior",
+            }
+        }
+    });
+</script>
 @endsection
