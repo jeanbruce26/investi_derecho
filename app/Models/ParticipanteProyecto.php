@@ -16,6 +16,7 @@ class ParticipanteProyecto extends Model
         'participante_proyecto_id',
         'participante_proyecto',
         'participante_proyecto_estado',
+        'participante_categoria',
     ];
 
     public $timestamps = false;

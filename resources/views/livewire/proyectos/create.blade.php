@@ -39,6 +39,22 @@
                     @error('categoria') <span class="error">{{ $message }}</span> @enderror
                 </div>
             </div>
+            @if ($categoria == 7)
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">Curso <span class="text-danger">*</span></label>
+                <div class="col-md-9">
+                    <input wire:model="curso" class="form-control @error('curso') is-invalid  @enderror" type="text" value="" placeholder="Ingrese el nombre del curso">
+                    @error('curso') <span class="error">{{ $message }}</span> @enderror
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">Semestre <span class="text-danger">*</span></label>
+                <div class="col-md-9">
+                    <input wire:model="semestre" class="form-control @error('semestre') is-invalid  @enderror" type="text" value="" onkeyup="mayus(this);" placeholder="Ingrese el semestre, por ejemplo: '2009-I', '2020-II'">
+                    @error('semestre') <span class="error">{{ $message }}</span> @enderror
+                </div>
+            </div>
+            @endif
             <div class="mb-3 row">
                 <label class="col-md-3 col-form-label">Estado <span class="text-danger">*</span></label>
                 <div class="col-md-9">

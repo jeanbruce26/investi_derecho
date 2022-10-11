@@ -21,6 +21,8 @@ class Edit extends Component
     public $convocatoria;
     public $fecha_inicio;
     public $fecha_fin;
+    public $curso;
+    public $semestre;
 
     public function mount()
     {
@@ -39,6 +41,8 @@ class Edit extends Component
         $this->convocatoria = $proyecto->convocatoria_id;
         $this->fecha_inicio = $proyecto->proyecto_fecha_presentacion;
         $this->fecha_fin = $proyecto->proyecto_fecha_fin;
+        $this->curso = $proyecto->proyecto_curso;
+        $this->semestre = $proyecto->proyecto_semestre;
     }
 
     public function updated($propertyName){
@@ -62,25 +66,50 @@ class Edit extends Component
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'nullable|date',
             'convocatoria' => 'required|numeric',
+            'curso' => 'nullable|string',
+            'semestre' => 'nullable|string',
         ]);
+
+        // if($this->categoria != 7){
+        //     $this->reset('curso','semestre');
+        // }
     }
 
     public function actualizarProyecto()
     {
         // dd($this->all());
 
-        $this->validate([
-            'titulo' => 'required|string',
-            'resumen' => 'required|string',
-            'categoria' => 'required|numeric',
-            'estado' => 'required|string',
-            'financiamiento' => 'nullable',
-            'tipo_financiamiento' => 'nullable|numeric',
-            'monto_financiamiento' => 'nullable|numeric',
-            'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'nullable|date',
-            'convocatoria' => 'required|numeric',
-        ]);
+        if($this->financiamiento == false){
+            $this->validate([
+                'titulo' => 'required|string',
+                'resumen' => 'required|string',
+                'categoria' => 'required|numeric',
+                'estado' => 'required|string',
+                'financiamiento' => 'nullable',
+                'tipo_financiamiento' => 'nullable|numeric',
+                'monto_financiamiento' => 'nullable|numeric',
+                'fecha_inicio' => 'required|date',
+                'fecha_fin' => 'nullable|date',
+                'convocatoria' => 'required|numeric',
+                'curso' => 'nullable|string',
+                'semestre' => 'nullable|string',
+            ]);
+        }else{
+            $this->validate([
+                'titulo' => 'required|string',
+                'resumen' => 'required|string',
+                'categoria' => 'required|numeric',
+                'estado' => 'required|string',
+                'financiamiento' => 'nullable',
+                'fecha_inicio' => 'required|date',
+                'fecha_fin' => 'nullable|date',
+                'convocatoria' => 'required|numeric',
+                'tipo_financiamiento' => 'required|numeric',
+                'monto_financiamiento' => 'required|numeric',
+                'curso' => 'required|string',
+                'semestre' => 'required|string',
+            ]);
+        }
 
         $proyecto = Proyecto::find($this->proyecto_id);
         $proyecto->proyecto_titulo = $this->titulo;
@@ -95,6 +124,10 @@ class Edit extends Component
             $proyecto->proyecto_financiamiento = 'NO FINANCIADO';
             $proyecto->tipo_financiamiento_id = $this->tipo_financiamiento;
             $proyecto->proyecto_monto = $this->monto_financiamiento;
+        }
+        if($this->categoria == 7){
+            $proyecto->proyecto_curso = $this->curso;
+            $proyecto->proyecto_semestre = str_replace(' ','',$this->semestre);
         }
         $proyecto->save();
 
