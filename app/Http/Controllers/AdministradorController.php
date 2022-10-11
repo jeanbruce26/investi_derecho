@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Persona;
+use App\Models\Proyecto;
+use App\Models\CategoriaProyecto;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,12 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        return view('administrador');
+        $proyectoCount = Proyecto::count();
+        $personaCount = Persona::count();
+        $persona = Persona::where('persona_docente',1)->get();
+        $proyecto = Proyecto::all();
+        $categoriaProyecto = CategoriaProyecto::all();
+        return view('dashboard.dashboard', compact('proyectoCount', 'personaCount', 'persona', 'proyecto', 'categoriaProyecto'));
     }
 
     /**
