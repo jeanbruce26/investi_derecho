@@ -33,6 +33,17 @@
 
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+        <style>
+            .mostrar{
+                display: none;
+                transition: all 2s ease-out;
+            }
+            @media (max-width: 992px) {
+                #menu-boton {
+                    display: none;
+                }
+            }
+        </style>
         @yield('css')
 
         @livewireStyles
@@ -89,11 +100,15 @@
                                     <span class="logo-lg">
                                         <div class="d-flex justify-content-evenly align-items-center altura">
                                             <img src="{{asset('assets/img/derecho.png')}}" alt="" height="40">
-                                            <h6 class="ms-2 mt-2"><strong class="text-white">TERMÓMETRO DE INVESTIGADOR</strong></h6>
+                                            <h6 class="ms-2 mt-2"><strong class="text-white">TERMÓMETRO DEL INVESTIGADOR</strong></h6>
                                         </div>
                                     </span>
                                 </div>
                             </div>
+
+                            <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" onclick="myFunction()" id="menu-boton">
+                                <i class="fa fa-fw fa-bars"></i>
+                            </button>
 
                             <button type="button" class="btn btn-sm px-3 font-size-16 header-item toggle-btn waves-effect"
                                 id="vertical-menu-btn">
@@ -105,7 +120,7 @@
                     </div>
                 </div>
             </header> <!-- ========== Left Sidebar Start ========== -->
-            <div class="vertical-menu">
+            <div class="vertical-menu" id="menuDespegable">
 
                 <div class="h-100">
 
@@ -231,6 +246,13 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script src="{{asset('assets/js/app.js')}}"></script>
+
+    <script>
+        function myFunction() {
+            var element = document.getElementById("menuDespegable");
+            element.classList.toggle("mostrar");
+        }
+    </script>
 
     @stack('js')
     @yield('javascript')

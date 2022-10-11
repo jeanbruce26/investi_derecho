@@ -172,20 +172,20 @@ Dashboardd
                             @endphp
                                 <tr>
                                     <td>
-                                        <a href="#showModal" data-bs-toggle="modal" data-bs-target="#showModal{{$item->persona_id}}" class="text-dark"> {{ $item->persona_apellidos }},<br/> {{ $item->persona_nombres }} </a>
+                                        <a href="#showModal" data-bs-toggle="modal" data-bs-target="#showModal{{$item->persona_id}}" class="text-dark"> {{ $item->persona_apellidos }}, {{ $item->persona_nombres }} </a>
 
                                         {{-- Modal Show --}}
                                         <div class="modal fade" id="showModal{{$item->persona_id}}" tabindex="-1" aria-labelledby="showModal" aria-hidden="true">
                                             <div class="modal-dialog  modal-lg modal-dialog-scrollable">
                                                 <div class="modal-content">
-                                                    
+
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="showModalLabel">{{ $item->persona_apellidos }}, {{$item->persona_nombres}}</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="mb-3">
-                                                            
+
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -244,8 +244,8 @@ Dashboardd
                                             </div>
                                         </td>
                                     @endforeach
-                                    {{-- <td align="center"> 
-                                        <a href="#showModal" type="button" class="d-flex align-items-center justify-content-center btn btn-primary btn-sm" style="width: 35px" data-bs-toggle="modal" data-bs-target="#showModal{{$item->persona_id}}"> <i class="bx bx-show bx-xs"></i></a> 
+                                    {{-- <td align="center">
+                                        <a href="#showModal" type="button" class="d-flex align-items-center justify-content-center btn btn-primary btn-sm" style="width: 35px" data-bs-toggle="modal" data-bs-target="#showModal{{$item->persona_id}}"> <i class="bx bx-show bx-xs"></i></a>
                                     </td> --}}
                                 </tr>
                             @endforeach
