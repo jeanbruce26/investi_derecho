@@ -49,19 +49,12 @@ Dashboardd
         <div class="card">
             <div class="card-body">
                 <div class="row align-items-center">
-                    <div class="col-8">
+                    <div class="col-7">
                         <p class="mb-2 text-dark">Docentes Investigadores</p>
-                        <h4 class="mb-0">{{ $personaDocuenteCount }}</h4>
                     </div>
-                    <div class="col-4">
+                    <div class="col-5">
                         <div class="text-end">
-                            <div>
-                                2.06 % <i class="mdi mdi-arrow-up text-success ms-1"></i>
-                            </div>
-                            <div class="progress progress-sm mt-3">
-                                <div class="progress-bar" role="progressbar" style="width: 62%"
-                                    aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                            <h3 class="mb-0 text-danger">12{{ $personaDocuenteCount }}</h3>
                         </div>
                     </div>
                 </div>
@@ -73,19 +66,13 @@ Dashboardd
         <div class="card">
             <div class="card-body">
                 <div class="row align-items-center">
-                    <div class="col-8">
+                    <div class="col-7">
                         <p class="mb-2 text-dark">Proyectos de investigación</p>
-                        <h4 class="mb-0">{{ $proyectoInvestigacionCount }}</h4>
+                        
                     </div>
-                    <div class="col-4">
+                    <div class="col-5">
                         <div class="text-end">
-                            <div>
-                                2.06 % <i class="mdi mdi-arrow-up text-success ms-1"></i>
-                            </div>
-                            <div class="progress progress-sm mt-3">
-                                <div class="progress-bar" role="progressbar" style="width: 62%"
-                                    aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                            <h3 class="mb-0 text-danger">08{{ $proyectoInvestigacionCount }}</h3>
                         </div>
                     </div>
                 </div>
@@ -97,19 +84,13 @@ Dashboardd
         <div class="card">
             <div class="card-body">
                 <div class="row align-items-center">
-                    <div class="col-8">
-                        <p class="mb-2 text-dark">Proyectos de Pregrado</p>
-                        <h4 class="mb-0">{{ $proyectoPregradoCount }}</h4>
+                    <div class="col-7">
+                        <p class="mb-2 text-dark">Proyectos de Tesis de Pregrado</p>
+                        
                     </div>
-                    <div class="col-4">
+                    <div class="col-5">
                         <div class="text-end">
-                            <div>
-                                2.06 % <i class="mdi mdi-arrow-up text-success ms-1"></i>
-                            </div>
-                            <div class="progress progress-sm mt-3">
-                                <div class="progress-bar" role="progressbar" style="width: 62%"
-                                    aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                            <h3 class="mb-0 text-danger">12{{ $proyectoPregradoCount }}</h3>
                         </div>
                     </div>
                 </div>
@@ -121,19 +102,13 @@ Dashboardd
         <div class="card">
             <div class="card-body">
                 <div class="row align-items-center">
-                    <div class="col-8">
-                        <p class="mb-2 text-dark">Proyectos de Posgrado</p>
-                        <h4 class="mb-0">{{ $proyectoPosgradoCount }}</h4>
+                    <div class="col-7">
+                        <p class="mb-2 text-dark">Proyectos de Tesis de Posgrado</p>
+                        
                     </div>
-                    <div class="col-4">
+                    <div class="col-5">
                         <div class="text-end">
-                            <div>
-                                2.06 % <i class="mdi mdi-arrow-up text-success ms-1"></i>
-                            </div>
-                            <div class="progress progress-sm mt-3">
-                                <div class="progress-bar" role="progressbar" style="width: 62%"
-                                    aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                            <h3 class="mb-0 text-danger">12{{ $proyectoPosgradoCount }}</h3>
                         </div>
                     </div>
                 </div>
@@ -162,7 +137,6 @@ Dashboardd
                                         <th scope="col" class="col-md-1">{{str_replace('PROYECTO INVESTIGACION ','',$item->categoria_proyecto)}}</th>
                                     @endif
                                 @endforeach
-                                {{-- <th scope="col">ACCIONES</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -176,7 +150,7 @@ Dashboardd
 
                                         {{-- Modal Show --}}
                                         <div class="modal fade" id="showModal{{$item->persona_id}}" tabindex="-1" aria-labelledby="showModal" aria-hidden="true">
-                                            <div class="modal-dialog  modal-lg modal-dialog-scrollable">
+                                            <div class="modal-dialog  modal-xl modal-dialog-scrollable">
                                                 <div class="modal-content">
 
                                                     <div class="modal-header">
@@ -244,9 +218,6 @@ Dashboardd
                                             </div>
                                         </td>
                                     @endforeach
-                                    {{-- <td align="center">
-                                        <a href="#showModal" type="button" class="d-flex align-items-center justify-content-center btn btn-primary btn-sm" style="width: 35px" data-bs-toggle="modal" data-bs-target="#showModal{{$item->persona_id}}"> <i class="bx bx-show bx-xs"></i></a>
-                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>
