@@ -132,7 +132,70 @@ Dashboardd
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="mb-3">
+                                                            <div class="row g-3">
+                                                                @foreach ($categoriaProyecto as $itemCat)
+                                                                        @php
+                                                                            $reporte = App\Models\PersonaProyecto::join('proyecto','persona_proyecto.proyecto_id','=','proyecto.proyecto_id')->join('convocatoria','proyecto.convocatoria_id','=','convocatoria.convocatoria_id')->select('proyecto.convocatoria_id', App\Models\PersonaProyecto::raw('count(persona_proyecto.proyecto_id) as cantidad'))->where('persona_proyecto.persona_id',$item->persona_id)->where('proyecto.categoria_proyecto_id',$itemCat->categoria_proyecto_id)->groupBy('proyecto.convocatoria_id')->orderBy('proyecto.convocatoria_id','DESC')->take(6)->skip(0)->get();
+                                                                            
+                                                                            $count = [];
 
+                                                                            foreach($reporte as $item){
+                                                                                $count[] = ['label' => $item->convocatoria, 'data' => $item->cantidad];
+                                                                            }
+
+                                                                            if($count == null){
+                                                                                $count[] = ['label' => 'No se encontro datos', 'data' => 0];
+                                                                            }
+
+                                                                            $data = json_encode($count);
+                                                                        @endphp
+
+                                                                        <div class="col-6">
+                                                                            <div class="card mt-3">
+                                                                                <div class="card-body">
+                                                                                    <div class="w-100">
+                                                                                        <canvas id="myChart{{ $itemCat->categoria_proyecto_id }}" width="100" height="50"></canvas>
+                                                                                        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js">
+                                                                                        cData = JSON.parse(`<?php echo $data; ?>`);
+                                                                                        console.log(cData);
+                                                                                        const convocatoria = cData.map(data => data.label);
+                                                                                        const cantidad = cData.map(data => data.data);
+                                                                                        console.log(convocatoria);
+                                                                                        console.log(cantidad);
+                                                                                        const ctx = document.getElementById('myChart{{ $itemCat->categoria_proyecto_id }}').getContext('2d');
+                                                                                        const myChart = new Chart(ctx, {
+                                                                                            type: 'bar',
+                                                                                            data: {
+                                                                                                labels: convocatoria,
+                                                                                                datasets: [{
+                                                                                                    label: 'Cantidad de Proyectos por Convocatoria',
+                                                                                                    data: cantidad,
+                                                                                                    backgroundColor: [
+                                                                                                        'rgba(255, 99, 132, 0.7)',
+                                                                                                        'rgba(54, 162, 235, 0.7)',
+                                                                                                        'rgba(54, 102, 205, 0.7)',
+                                                                                                        'rgba(255, 99, 132, 0.7)',
+                                                                                                        'rgba(54, 162, 235, 0.7)',
+                                                                                                        'rgba(54, 102, 205, 0.7)',
+                                                                                                    ],
+                                                                                                    borderWidth: 1
+                                                                                                }]
+                                                                                            },
+                                                                                            options: {
+                                                                                                scales: {
+                                                                                                    y: {
+                                                                                                        beginAtZero: true
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        });
+                                                                                        </script>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                @endforeach
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
