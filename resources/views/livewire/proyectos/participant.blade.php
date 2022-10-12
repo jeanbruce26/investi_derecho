@@ -96,7 +96,7 @@
         <div class="card-body">
             <table id="tablaPersonaProyecto" class="table table-bordered dt-responsive nowrap text-dark"
                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                <thead>
+                <thead style="background-color: rgb(228, 228, 228)">
                     <tr>
                         <th><strong>ID</strong></th>
                         <th><strong>Nombre</strong></th>

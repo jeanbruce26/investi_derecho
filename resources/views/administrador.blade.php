@@ -37,9 +37,18 @@
 
 
         <style>
-            .mostrar{
+            .mostrar {
                 display: none;
                 transition: all 2s ease-out;
+            }
+            .nombre {
+                cursor: pointer;
+            }
+            .nombre:hover {
+                color: blue;
+                -webkit-text-decoration-line: underline; /* Safari */
+                text-decoration-line: underline;
+                transition: color .3s;
             }
             @media (max-width: 992px) {
                 #menu-boton {

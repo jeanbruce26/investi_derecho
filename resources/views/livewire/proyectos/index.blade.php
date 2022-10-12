@@ -23,7 +23,7 @@
             </div>
             <table id="" class="table table-bordered dt-responsive nowrap text-dark"
                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                <thead>
+                <thead style="background-color: rgb(228, 228, 228)">
                     <tr>
                         <th class="col-md-1"><strong>ID</strong></th>
                         <th class="col-md-4"><strong>TITULO</strong></th>

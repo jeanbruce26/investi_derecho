@@ -21,13 +21,13 @@ Dashboardd
     <div class="col-xl-3">
         <div class="card">
             <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-7">
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div class="">
                         <p class="mb-2 text-dark">Docentes Investigadores</p>
                     </div>
-                    <div class="col-5">
-                        <div class="text-end">
-                            <h3 class="mb-0 text-danger">12{{ $personaDocuenteCount }}</h3>
+                    <div class="">
+                        <div class="">
+                            <h3 class="ms-3 text-danger">{{ $personaDocuenteCount }}</h3>
                         </div>
                     </div>
                 </div>
@@ -38,14 +38,13 @@ Dashboardd
     <div class="col-xl-3">
         <div class="card">
             <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-7">
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div class="">
                         <p class="mb-2 text-dark">Proyectos de investigación</p>
-                        
                     </div>
-                    <div class="col-5">
-                        <div class="text-end">
-                            <h3 class="mb-0 text-danger">08{{ $proyectoInvestigacionCount }}</h3>
+                    <div class="">
+                        <div class="">
+                            <h3 class="ms-3 text-danger">{{ $proyectoInvestigacionCount }}</h3>
                         </div>
                     </div>
                 </div>
@@ -56,14 +55,13 @@ Dashboardd
     <div class="col-xl-3">
         <div class="card">
             <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-7">
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div class="">
                         <p class="mb-2 text-dark">Proyectos de Tesis de Pregrado</p>
-                        
                     </div>
-                    <div class="col-5">
-                        <div class="text-end">
-                            <h3 class="mb-0 text-danger">12{{ $proyectoPregradoCount }}</h3>
+                    <div class="">
+                        <div class="">
+                            <h3 class="ms-3 text-danger">{{ $proyectoPregradoCount }}</h3>
                         </div>
                     </div>
                 </div>
@@ -74,14 +72,13 @@ Dashboardd
     <div class="col-xl-3">
         <div class="card">
             <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-7">
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div class="">
                         <p class="mb-2 text-dark">Proyectos de Tesis de Posgrado</p>
-                        
                     </div>
-                    <div class="col-5">
-                        <div class="text-end">
-                            <h3 class="mb-0 text-danger">12{{ $proyectoPosgradoCount }}</h3>
+                    <div class="">
+                        <div class="">
+                            <h3 class="ms-3 text-danger">{{ $proyectoPosgradoCount }}</h3>
                         </div>
                     </div>
                 </div>
@@ -96,18 +93,18 @@ Dashboardd
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-4">Proyectos de Docentes</h4>
+                <h4 class="card-title mb-4 text-uppercase">Proyectos de Docentes</h4>
 
                 <div class="table-responsive">
                     <table class="table table-centered text-dark" id="tablaDashboard">
-                        <thead>
+                        <thead style="background-color: rgb(228, 228, 228)">
                             <tr>
-                                <th scope="col">DOCENTE</th>
+                                <th scope="col" class="text-center">DOCENTES</th>
                                 @foreach ($categoriaProyecto as $item)
                                     @if($item->categoria_proyecto_id == 1 || $item->categoria_proyecto_id == 2)
-                                        <th scope="col" class="col-md-1">{{str_replace('PROYECTO TESIS ','',$item->categoria_proyecto)}} (ASESORIA)</th>
+                                        <th scope="col" class="col-md-1 text-center">{{str_replace('PROYECTO TESIS ','',$item->categoria_proyecto)}} (ASESORIA)</th>
                                     @else
-                                        <th scope="col" class="col-md-1">{{str_replace('PROYECTO INVESTIGACION ','',$item->categoria_proyecto)}}</th>
+                                        <th scope="col" class="col-md-1 text-center">{{str_replace('PROYECTO INVESTIGACION ','',$item->categoria_proyecto)}}</th>
                                     @endif
                                 @endforeach
                             </tr>
@@ -119,7 +116,7 @@ Dashboardd
                             @endphp
                                 <tr>
                                     <td>
-                                        <a href="#showModal" data-bs-toggle="modal" data-bs-target="#showModal{{$item->persona_id}}" class="text-dark"> {{ $item->persona_apellidos }}, {{ $item->persona_nombres }} </a>
+                                        <a href="#showModal" data-bs-toggle="modal" data-bs-target="#showModal{{$item->persona_id}}" class="text-dark"><p class="nombre">{{ $item->persona_apellidos }}, {{ $item->persona_nombres }}</p> </a>
 
                                         {{-- Modal Show --}}
                                         <div class="modal fade" id="showModal{{$item->persona_id}}" tabindex="-1" aria-labelledby="showModal" aria-hidden="true">
