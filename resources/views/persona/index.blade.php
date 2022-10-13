@@ -14,7 +14,6 @@ Persona
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.min.css">
 @endsection
 
 @section('content')
@@ -32,7 +31,7 @@ Persona
     </div>
 @endif
 <div class="card">
-    <div class="card-body">
+    <div class="card-body table-responsive">
         <table id="tablaPersona" class="table table-bordered dt-responsive nowrap text-dark"
             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead style="background-color: rgb(228, 228, 228)">
@@ -77,12 +76,9 @@ Persona
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>
 <script>
     $('#tablaPersona').DataTable({
-        responsive: true,
-        autoWidth: false,
+        autoWidth: true,
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por páginas",
             "zeroRecords": "Nada encontrado - disculpa",

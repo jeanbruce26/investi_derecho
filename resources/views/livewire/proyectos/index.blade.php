@@ -14,7 +14,7 @@
         </div>
     @endif
     <div class="card">
-        <div class="card-body">
+        <div class="card-body table-responsive">
             <div class="mb-3 d-flex justify-content-end">
                 <label class="col-md-1 col-form-label">Buscar: </label>
                 <div class="col-md-3">
