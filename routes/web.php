@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('administrador', [AdministradorController::class, 'index'])->middleware('auth')->name('administrador');
+Route::get('administrador/reporte/{id}', [AdministradorController::class, 'reporte'])->middleware('auth')->name('reporte');
 
 
 //Administrador

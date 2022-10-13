@@ -33,9 +33,6 @@
 
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-
-
         <style>
             .mostrar {
                 display: none;
@@ -243,7 +240,7 @@
     <script src="{{asset('assets/libs/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
 
     <!-- apexcharts -->
-    <script src="{{asset('assets/libs/apexcharts/apexcharts.min.js')}}"></script>
+    {{-- <script src="{{asset('assets/libs/apexcharts/apexcharts.min.js')}}"></script> --}}
 
     <!-- jquery.vectormap map -->
     <script src="{{asset('assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
@@ -252,10 +249,10 @@
     <script src="{{asset('assets/js/pages/dashboard.init.js')}}"></script>
 
     <!-- form advanced init -->
-    <script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
+    {{-- <script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script> --}}
 
     <!--select2 cdn-->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 
     <script src="{{asset('assets/js/app.js')}}"></script>
 
