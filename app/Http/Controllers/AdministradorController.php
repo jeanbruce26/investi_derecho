@@ -77,7 +77,9 @@ class AdministradorController extends Controller
                     break;
             }
         }
-        // dd($categoria);
-        return view('dashboard.reporte', compact('per', 'data1', 'data2', 'data3', 'data4', 'data5', 'data6', 'data7', 'data8', 'categoria'));
+
+        $persona_id = $id;
+
+        return view('dashboard.reporte', compact('persona_id', 'per', 'data1', 'data2', 'data3', 'data4', 'data5', 'data6', 'data7', 'data8', 'categoria'));
     }
 }

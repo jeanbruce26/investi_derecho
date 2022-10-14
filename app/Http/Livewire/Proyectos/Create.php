@@ -73,20 +73,37 @@ class Create extends Component
                 'semestre' => 'nullable|string',
             ]);
         }else{
-            $this->validate([
-                'titulo' => 'required|string',
-                'resumen' => 'required|string',
-                'categoria' => 'required|numeric',
-                'estado' => 'required|string',
-                'financiamiento' => 'nullable',
-                'fecha_inicio' => 'required|date',
-                'fecha_fin' => 'nullable|date',
-                'convocatoria' => 'required|numeric',
-                'tipo_financiamiento' => 'required|numeric',
-                'monto_financiamiento' => 'required|numeric',
-                'curso' => 'required|string',
-                'semestre' => 'required|string',
-            ]);
+            if($this->categoria == 7){
+                $this->validate([
+                    'titulo' => 'required|string',
+                    'resumen' => 'required|string',
+                    'categoria' => 'required|numeric',
+                    'estado' => 'required|string',
+                    'financiamiento' => 'nullable',
+                    'fecha_inicio' => 'required|date',
+                    'fecha_fin' => 'nullable|date',
+                    'convocatoria' => 'required|numeric',
+                    'tipo_financiamiento' => 'required|numeric',
+                    'monto_financiamiento' => 'required|numeric',
+                    'curso' => 'required|string',
+                    'semestre' => 'required|string',
+                ]);
+            }else{
+                $this->validate([
+                    'titulo' => 'required|string',
+                    'resumen' => 'required|string',
+                    'categoria' => 'required|numeric',
+                    'estado' => 'required|string',
+                    'financiamiento' => 'nullable',
+                    'fecha_inicio' => 'required|date',
+                    'fecha_fin' => 'nullable|date',
+                    'convocatoria' => 'required|numeric',
+                    'tipo_financiamiento' => 'required|numeric',
+                    'monto_financiamiento' => 'required|numeric',
+                    'curso' => 'nullable|string',
+                    'semestre' => 'nullable|string',
+                ]);
+            }
         }
 
         $proyecto = Proyecto::create([

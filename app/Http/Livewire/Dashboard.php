@@ -10,35 +10,17 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
-    // public $data1;
-    // public $data2;
-    // public $data3;
-    // public $data4;
-    // public $data5;
-    // public $data6;
-    // public $data7;
-    // public $data8;
-    // public $reporte;
+    public $buscar;
+    public $persona_id;
 
-    
     public function render()
     {
-        $proyectoInvestigacionCount = Proyecto::where('categoria_proyecto_id', '!=', 1)->where('categoria_proyecto_id', '!=', 2)->count();
-        $proyectoPregradoCount = Proyecto::where('categoria_proyecto_id', 1)->count();
-        $proyectoPosgradoCount = Proyecto::where('categoria_proyecto_id', 2)->count();
-        $personaDocuenteCount = Persona::where('persona_docente', 1)->count();
-        $persona = Persona::where('persona_docente', 1)->get();
-        $proyecto = Proyecto::all();
-        $categoriaProyecto = CategoriaProyecto::all();
+        $id = $this->persona_id;
+        $search = $this->buscar;
+        $proyecto = PersonaProyecto::join('proyecto','persona_proyecto.proyecto_id','=','proyecto.proyecto_id')->join('categoria_proyecto','proyecto.categoria_proyecto_id','=','categoria_proyecto.categoria_proyecto_id')->where(function($query) use ($id){$query->where('persona_proyecto.persona_id',$id);})->where(function($query) use ($search){$query->where('proyecto.proyecto_titulo','LIKE',"%{$search}%")->orWhere('categoria_proyecto.categoria_proyecto','LIKE',"%{$search}%")->orWhere('proyecto.proyecto_financiamiento','LIKE',"%{$search}%");})->orderBy('proyecto.proyecto_id','ASC')->paginate(10);
 
         return view('livewire.dashboard', [
-            'proyectoInvestigacionCount' => $proyectoInvestigacionCount,
-            'personaDocuenteCount' => $personaDocuenteCount,
-            'persona' => $persona,
             'proyecto' => $proyecto,
-            'categoriaProyecto' => $categoriaProyecto,
-            'proyectoPregradoCount' => $proyectoPregradoCount,
-            'proyectoPosgradoCount' => $proyectoPosgradoCount
         ]);
     }
 }

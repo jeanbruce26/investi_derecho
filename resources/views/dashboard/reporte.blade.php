@@ -12,16 +12,13 @@ Dashboardd
 </div>
 @endsection
 
-@section('css')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-@endsection
-
 @section('content')
 <div class="card">
     <div class="card-body">
-        <div class="d-flex align-items-center">
+        <div class="d-flex justify-content-between align-items-center">
             <a href="{{route('administrador')}}" class="btn btn-secondary fw-bold me-4" style="width: 120px">Regresar</a>
-            <h4 class="fw-bold mt-2" style="text-decoration-line: underline;">{{$per->persona_apellidos}}, {{$per->persona_nombres}}</h4>
+            <h4 class="fw-bold mt-2 text-center" style="text-decoration-line: underline;">{{$per->persona_apellidos}}, {{$per->persona_nombres}}</h4>
+            <div style="width: 120px"></div>
         </div>
     </div>
 </div>
@@ -124,34 +121,11 @@ Dashboardd
     @endif
 </div>
 
-<div>
-    {{-- TU PARTE BECHITO --}}
-</div>
+@livewire('dashboard', ['persona_id' => $persona_id])
+
 @endsection
 
 @section('javascript')
-{{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-<script>
-    $('#tablaDashboard').DataTable({
-        autoWidth: true,
-        "language": {
-            "lengthMenu": "Mostrar _MENU_ registros por páginas",
-            "zeroRecords": "Nada encontrado - disculpa",
-            "info": "Mostrando la página _PAGE_ de _PAGES_",
-            "infoEmpty": "No hay registros",
-            "infoFiltered": "(filtrado de _MAX_ registros totales)",
-            "search": "Buscar:",
-            "order": "desc",
-            "paginate": {
-                "next": "Siguiente",
-                "previous": "Anterior",
-            }
-        }
-    });
-</script> --}}
-
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
