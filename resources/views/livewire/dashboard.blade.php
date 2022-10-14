@@ -19,6 +19,7 @@
                         <th><strong>NRO</strong></th>
                         <th class="col-md-5"><strong>TITULO</strong></th>
                         <th><strong>CATEGORIA</strong></th>
+                        <th><strong>ROL</strong></th>
                         <th><strong>TIPO</strong></th>
                     </tr>
                 </thead>
@@ -38,6 +39,7 @@
                                 <td align="center">{{ $num++ }}</td>
                                 <td>{{ $item->Proyecto->proyecto_titulo }}</td>
                                 <td>{{ $item->Proyecto->CategoriaProyecto->categoria_proyecto }}</td>
+                                <td>{{ $item->ParticipanteProyecto->participante_proyecto }}</td>
                                 <td>{{ $item->Proyecto->proyecto_financiamiento }}</td>
                             </tr>
                         @endforeach
