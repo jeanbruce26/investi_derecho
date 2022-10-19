@@ -200,7 +200,7 @@
                     <!-- end page title -->
 
                     <div class="row">
-                        <div class="col-xl-12">
+                        <div class="col-xl-12 text-dark">
                             @yield('content')
                         </div>
                     </div>

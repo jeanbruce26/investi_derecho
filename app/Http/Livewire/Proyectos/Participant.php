@@ -50,7 +50,11 @@ class Participant extends Component
     {
         if($this->persona){
             $persona_modelo = Persona::where('persona_nombres',$this->persona)->first();
-            $this->persona_docente = $persona_modelo->persona_docente;
+            if($persona_modelo ==  null){
+                $this->persona_docente = 0;
+            }else{
+                $this->persona_docente = $persona_modelo->persona_docente;
+            }
 
             if($this->persona_docente == 1){
             }else{
