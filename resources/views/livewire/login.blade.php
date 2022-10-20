@@ -33,7 +33,7 @@
                 </div>
             @endif
 
-            <div class="mt-3">
+            <div class="mt-4">
                 <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Inicie Sesión</button>
             </div>
         </form>
