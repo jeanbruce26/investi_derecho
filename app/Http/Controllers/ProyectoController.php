@@ -29,11 +29,6 @@ class ProyectoController extends Controller
         return view('proyectos.edit', compact('proyecto_id'));
     }
 
-    public function destroy($id)
-    {
-        //
-    }
-
     public function participant($id)
     {
         $proyecto_id = $id;

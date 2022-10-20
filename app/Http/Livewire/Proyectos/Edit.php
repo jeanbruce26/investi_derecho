@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Proyectos;
 
 use App\Models\CategoriaProyecto;
 use App\Models\Convocatoria;
+use App\Models\LineaInvestigacion;
 use App\Models\Proyecto;
 use App\Models\TipoFinanciamiento;
 use Livewire\Component;
@@ -23,6 +24,7 @@ class Edit extends Component
     public $fecha_fin;
     public $curso;
     public $semestre;
+    public $linea_investigacion;
 
     public function mount()
     {
@@ -31,6 +33,7 @@ class Edit extends Component
         $this->resumen = $proyecto->proyecto_resumen;
         $this->categoria = $proyecto->categoria_proyecto_id;
         $this->estado = $proyecto->proyecto_estado;
+        $this->linea_investigacion = $proyecto->lineas_investigacion_id;
         if($proyecto->proyecto_financiamiento == 'FINANCIADO'){
             $this->financiamiento = true;
         }else{
@@ -68,6 +71,7 @@ class Edit extends Component
             'convocatoria' => 'required|numeric',
             'curso' => 'nullable|string',
             'semestre' => 'nullable|string',
+            'linea_investigacion' => 'required|numeric',
         ]);
 
         // if($this->categoria != 7){
@@ -93,6 +97,7 @@ class Edit extends Component
                 'convocatoria' => 'required|numeric',
                 'curso' => 'nullable|string',
                 'semestre' => 'nullable|string',
+                'linea_investigacion' => 'required|numeric',
             ]);
         }else{
             if($this->categoria == 7){
@@ -109,6 +114,7 @@ class Edit extends Component
                     'monto_financiamiento' => 'required|numeric',
                     'curso' => 'required|string',
                     'semestre' => 'required|string',
+                    'linea_investigacion' => 'required|numeric',
                 ]);
             }else{
                 $this->validate([
@@ -124,6 +130,7 @@ class Edit extends Component
                     'monto_financiamiento' => 'required|numeric',
                     'curso' => 'nullable|string',
                     'semestre' => 'nullable|string',
+                    'linea_investigacion' => 'required|numeric',
                 ]);
             }
         }
@@ -131,6 +138,7 @@ class Edit extends Component
         $proyecto = Proyecto::find($this->proyecto_id);
         $proyecto->proyecto_titulo = $this->titulo;
         $proyecto->proyecto_resumen = $this->resumen;
+        $proyecto->lineas_investigacion_id = $this->linea_investigacion;
         $proyecto->proyecto_estado = $this->estado;
         $proyecto->categoria_proyecto_id = $this->categoria;
         if($this->financiamiento == true){
@@ -158,11 +166,13 @@ class Edit extends Component
         $cate_proyect = CategoriaProyecto::all();
         $tipo_financi = TipoFinanciamiento::all();
         $convo = Convocatoria::all();
+        $lineas = LineaInvestigacion::all(); // me obtiene todos los registros de la tabla lienas de investigacion
 
         return view('livewire.proyectos.edit', [
             'cate_proyect' => $cate_proyect,
             'tipo_financi' => $tipo_financi,
             'convo' => $convo,
+            'lineas' => $lineas,
         ]);
     }
 }

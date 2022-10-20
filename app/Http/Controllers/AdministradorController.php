@@ -25,7 +25,24 @@ class AdministradorController extends Controller
         $persona = Persona::where('persona_docente', 1)->get();
         $proyecto = Proyecto::all();
         $categoriaProyecto = CategoriaProyecto::all();
-        return view('dashboard.dashboard', compact('proyectoInvestigacionCount', 'personaDocuenteCount', 'persona', 'proyecto', 'categoriaProyecto', 'proyectoPregradoCount', 'proyectoPosgradoCount'));
+
+        $per = PersonaProyecto::join('persona','persona_proyecto.persona_id','=','persona.persona_id')->select('persona_proyecto.persona_id', PersonaProyecto::raw('count(persona_proyecto.persona_proyecto_id) as cantidad'))->where('persona.persona_docente',1)->groupBy('persona_proyecto.persona_id')->orderBy(PersonaProyecto::raw('count(persona_proyecto.persona_proyecto_id)'), 'DESC')->take(10)->skip(0)->get();
+
+        $count = [];
+
+        foreach ($per as $item2) {
+            $count[] = ['label' => $item2->Persona->persona_nombres.' '.$item2->Persona->persona_apellidos, 'data' => $item2->cantidad];
+        }
+
+        if ($count == null) {
+            $count[] = ['label' => 'No se encontro datos', 'data' => 0];
+        }
+
+        $dataProyecto = json_encode($count);
+
+        // dd($dataProyecto);
+
+        return view('dashboard.dashboard', compact('proyectoInvestigacionCount', 'personaDocuenteCount', 'persona', 'proyecto', 'categoriaProyecto', 'proyectoPregradoCount', 'proyectoPosgradoCount', 'dataProyecto'));
     }
 
     public function reporte($id)

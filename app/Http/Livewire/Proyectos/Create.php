@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Proyectos;
 
 use App\Models\CategoriaProyecto;
 use App\Models\Convocatoria;
+use App\Models\LineaInvestigacion;
 use App\Models\Proyecto;
 use App\Models\TipoFinanciamiento;
 use Livewire\Component;
@@ -22,6 +23,7 @@ class Create extends Component
     public $fecha_fin;
     public $curso;
     public $semestre;
+    public $linea_investigacion;
 
     public function updated($propertyName){
         if($this->financiamiento == false){
@@ -46,6 +48,7 @@ class Create extends Component
             'convocatoria' => 'required|numeric',
             'curso' => 'nullable|string',
             'semestre' => 'nullable|string',
+            'linea_investigacion' => 'required|numeric',
         ]);
 
         if($this->categoria != 7){
@@ -71,6 +74,7 @@ class Create extends Component
                 'convocatoria' => 'required|numeric',
                 'curso' => 'nullable|string',
                 'semestre' => 'nullable|string',
+                'linea_investigacion' => 'required|numeric',
             ]);
         }else{
             if($this->categoria == 7){
@@ -87,6 +91,7 @@ class Create extends Component
                     'monto_financiamiento' => 'required|numeric',
                     'curso' => 'required|string',
                     'semestre' => 'required|string',
+                    'linea_investigacion' => 'required|numeric',
                 ]);
             }else{
                 $this->validate([
@@ -102,6 +107,7 @@ class Create extends Component
                     'monto_financiamiento' => 'required|numeric',
                     'curso' => 'nullable|string',
                     'semestre' => 'nullable|string',
+                    'linea_investigacion' => 'required|numeric',
                 ]);
             }
         }
@@ -114,6 +120,7 @@ class Create extends Component
             "proyecto_fecha_presentacion" => $this->fecha_inicio,
             "proyecto_fecha_fin" => $this->fecha_fin,
             "convocatoria_id" => $this->convocatoria,
+            "lineas_investigacion_id" => $this->linea_investigacion,
         ]);
 
         $proyecto = Proyecto::find($proyecto->proyecto_id);
@@ -140,11 +147,13 @@ class Create extends Component
         $cate_proyect = CategoriaProyecto::all();
         $tipo_financi = TipoFinanciamiento::all();
         $convo = Convocatoria::all();
+        $lineas = LineaInvestigacion::all(); // me obtiene todos los registros de la tabla lienas de investigacion
 
         return view('livewire.proyectos.create', [
             'cate_proyect' => $cate_proyect,
             'tipo_financi' => $tipo_financi,
             'convo' => $convo,
+            'lineas' => $lineas,
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Proyectos;
 use App\Models\CategoriaDocente;
 use App\Models\CategoriaDocenteInvestigacion;
 use App\Models\CategoriaProyecto;
+use App\Models\LineaInvestigacion;
 use App\Models\ParticipanteProyecto;
 use App\Models\Persona;
 use App\Models\PersonaProyecto;

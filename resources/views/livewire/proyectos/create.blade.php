@@ -56,6 +56,19 @@
             </div>
             @endif
             <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">Linea de investigación <span class="text-danger">*</span></label>
+                <div class="col-md-9">
+                    <select wire:model="linea_investigacion" class="form-select @error('linea_investigacion') is-invalid  @enderror" aria-label="Default select example">
+                        <option value="" selected>Seleccione</option>
+                        @foreach ($lineas as $item)
+                        <option value="{{$item->lineas_investigacion_id}}">{{$item->lineas_investigacion}}</option>
+                        @endforeach
+                    </select>
+                    </select>
+                    @error('linea_investigacion') <span class="error">{{ $message }}</span> @enderror
+                </div>
+            </div>
+            <div class="mb-3 row">
                 <label class="col-md-3 col-form-label">Estado <span class="text-danger">*</span></label>
                 <div class="col-md-9">
                     <select wire:model="estado" class="form-select @error('estado') is-invalid  @enderror" aria-label="Default select example">

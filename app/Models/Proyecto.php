@@ -26,6 +26,7 @@ class Proyecto extends Model
         'convocatoria_id',
         'proyecto_curso',
         'proyecto_semestre',
+        'lineas_investigacion_id',
     ];
 
     public $timestamps = false;
@@ -46,5 +47,11 @@ class Proyecto extends Model
     public function Convocatoria(){
         return $this->belongsTo(Convocatoria::class,
         'convocatoria_id','convocatoria_id');
+    }
+
+    // LineaInvestigacion
+    public function LineaInvestigacion(){
+        return $this->belongsTo(LineaInvestigacion::class,
+        'lineas_investigacion_id','lineas_investigacion_id');
     }
 }
