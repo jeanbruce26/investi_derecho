@@ -60,7 +60,7 @@ class Edit extends Component
 
         $this->validateOnly($propertyName, [
             'titulo' => 'required|string',
-            'resumen' => 'required|string',
+            'resumen' => 'nullable|string',
             'categoria' => 'required|numeric',
             'estado' => 'required|string',
             'financiamiento' => 'nullable',
@@ -71,7 +71,7 @@ class Edit extends Component
             'convocatoria' => 'required|numeric',
             'curso' => 'nullable|string',
             'semestre' => 'nullable|string',
-            'linea_investigacion' => 'required|numeric',
+            'linea_investigacion' => 'nullable|numeric',
         ]);
 
         // if($this->categoria != 7){
@@ -86,7 +86,7 @@ class Edit extends Component
         if($this->financiamiento == false){
             $this->validate([
                 'titulo' => 'required|string',
-                'resumen' => 'required|string',
+                'resumen' => 'nullable|string',
                 'categoria' => 'required|numeric',
                 'estado' => 'required|string',
                 'financiamiento' => 'nullable',
@@ -97,13 +97,13 @@ class Edit extends Component
                 'convocatoria' => 'required|numeric',
                 'curso' => 'nullable|string',
                 'semestre' => 'nullable|string',
-                'linea_investigacion' => 'required|numeric',
+                'linea_investigacion' => 'nullable|numeric',
             ]);
         }else{
             if($this->categoria == 7){
                 $this->validate([
                     'titulo' => 'required|string',
-                    'resumen' => 'required|string',
+                    'resumen' => 'nullable|string',
                     'categoria' => 'required|numeric',
                     'estado' => 'required|string',
                     'financiamiento' => 'nullable',
@@ -111,15 +111,15 @@ class Edit extends Component
                     'fecha_fin' => 'nullable|date',
                     'convocatoria' => 'required|numeric',
                     'tipo_financiamiento' => 'required|numeric',
-                    'monto_financiamiento' => 'required|numeric',
+                    'monto_financiamiento' => 'nullable|numeric',
                     'curso' => 'required|string',
                     'semestre' => 'required|string',
-                    'linea_investigacion' => 'required|numeric',
+                    'linea_investigacion' => 'nullable|numeric',
                 ]);
             }else{
                 $this->validate([
                     'titulo' => 'required|string',
-                    'resumen' => 'required|string',
+                    'resumen' => 'nullable|string',
                     'categoria' => 'required|numeric',
                     'estado' => 'required|string',
                     'financiamiento' => 'nullable',
@@ -127,10 +127,10 @@ class Edit extends Component
                     'fecha_fin' => 'nullable|date',
                     'convocatoria' => 'required|numeric',
                     'tipo_financiamiento' => 'required|numeric',
-                    'monto_financiamiento' => 'required|numeric',
+                    'monto_financiamiento' => 'nullable|numeric',
                     'curso' => 'nullable|string',
                     'semestre' => 'nullable|string',
-                    'linea_investigacion' => 'required|numeric',
+                    'linea_investigacion' => 'nullable|numeric',
                 ]);
             }
         }

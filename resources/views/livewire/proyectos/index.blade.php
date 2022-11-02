@@ -47,7 +47,11 @@
                                 <td>{{ $item->proyecto_id }}</td>
                                 <td>{{ $item->proyecto_titulo }}</td>
                                 <td>{{ $item->CategoriaProyecto->categoria_proyecto }}</td>
-                                <td>{{ $item->LineaInvestigacion->lineas_investigacion }}</td>
+                                @if($item->LineasInvestigacion)
+                                    <td>{{ $item->LineaInvestigacion->lineas_investigacion }}</td>
+                                @else
+                                    <td></td>
+                                @endif
                                 <td>{{ $item->proyecto_financiamiento }}</td>
                                 <td>
                                     @php
