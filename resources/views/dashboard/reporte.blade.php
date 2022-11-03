@@ -119,6 +119,16 @@ Dashboardd
         </div>
     </div>
     @endif
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <figure class="highcharts-figure">
+                    <div id="reportLinea">
+                    </div>
+                </figure>
+            </div>
+        </div>
+    </div>
 </div>
 
 @livewire('dashboard', ['persona_id' => $persona_id])
@@ -194,6 +204,14 @@ Dashboardd
     console.log(datos8);
     const nombre8 = datos8.map(data => data.label);
     const cantidad8 = datos8.map(data => data.data);
+
+    var cDataLineas = '<?php echo $dataReporteLineas;?>';
+    var valorLineas = <?php echo json_decode($dataReporteLineas)[0]->data?>;
+    console.log(valorLineas);
+    const datosLineas = JSON.parse(cDataLineas);
+    console.log(datosLineas);
+    const nombreLineas = datosLineas.map(data => data.label);
+    const cantidadLineas = datosLineas.map(data => data.data);
 
     if(valor1 > 0)
         Highcharts.chart('report1', {
@@ -498,5 +516,47 @@ Dashboardd
                 data: cantidad8
             }]
         });
+
+    Highcharts.chart('reportLinea', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'LINEAS DE INVESTIGACIÓN'
+        },
+        xAxis: {
+            categories: nombreLineas,
+            crosshair: true
+        },
+        yAxis: {
+            title: {
+                useHTML: true,
+                text: 'Cantidad'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        colors: ['#69ce8e', '#69ce8e', '#69ce8e', '#69ce8e', '#69ce8e', '#69ce8e', '#69ce8e', '#69ce8e', '#69ce8e', '#69ce8e', '#69ce8e', '#69ce8e'
+        ],
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            },
+            series: {
+                colorByPoint: true
+            }
+        },
+        series: [{
+            name: 'Cantidad de Proyectos por Linea de Investigación',
+            data: cantidadLineas
+        }]
+    });
 </script>
 @endsection

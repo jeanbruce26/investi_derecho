@@ -97,6 +97,28 @@ class AdministradorController extends Controller
 
         $persona_id = $id;
 
-        return view('dashboard.reporte', compact('persona_id', 'per', 'data1', 'data2', 'data3', 'data4', 'data5', 'data6', 'data7', 'data8', 'categoria'));
+
+        //reporte por lienas
+        $reporte_linea = PersonaProyecto::join('proyecto', 'persona_proyecto.proyecto_id', '=', 'proyecto.proyecto_id')
+                ->join('persona', 'persona_proyecto.persona_id', '=', 'persona.persona_id')
+                ->join('lineas_investigacion', 'proyecto.lineas_investigacion_id', '=', 'lineas_investigacion.lineas_investigacion_id')
+                ->select('lineas_investigacion.lineas_investigacion', PersonaProyecto::raw('count(persona_proyecto.proyecto_id) as cantidad'))
+                ->where('persona_proyecto.persona_id', $id)
+                ->groupBy('proyecto.lineas_investigacion_id')
+                ->get();
+
+        $count2 = [];
+
+        foreach ($reporte_linea as $item3) {
+            $count2[] = ['label' => $item3->lineas_investigacion, 'data' => $item3->cantidad];
+        }
+
+        if ($count2 == null) {
+            $count2[] = ['label' => 'No se encontro datos', 'data' => 0];
+        }
+
+        $dataReporteLineas = json_encode($count2);
+
+        return view('dashboard.reporte', compact('persona_id', 'per', 'data1', 'data2', 'data3', 'data4', 'data5', 'data6', 'data7', 'data8', 'categoria','dataReporteLineas'));
     }
 }
