@@ -47,7 +47,7 @@
                                 <td>{{ $item->proyecto_id }}</td>
                                 <td>{{ $item->proyecto_titulo }}</td>
                                 <td>{{ $item->CategoriaProyecto->categoria_proyecto }}</td>
-                                @if($item->LineasInvestigacion)
+                                @if($item->lineas_investigacion_id)
                                     <td>{{ $item->LineaInvestigacion->lineas_investigacion }}</td>
                                 @else
                                     <td></td>
