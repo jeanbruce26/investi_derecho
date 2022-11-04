@@ -99,14 +99,13 @@
     <!-- end row -->
 
     <div class="row">
-
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4 text-uppercase">Proyectos de Docentes</h4>
 
                     <div class="table-responsive">
-                        <table class="table table-centered text-dark" id="tablaDashboard">
+                        <table class="table table-centered text-dark" id="tablaDashboard" data-page-length='100'>
                             <thead style="background-color: rgb(228, 228, 228)">
                                 <tr>
                                     <th scope="col" class="text-center">DOCENTES</th>
