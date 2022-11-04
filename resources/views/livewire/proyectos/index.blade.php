@@ -48,7 +48,11 @@
                                 <td>{{ $item->proyecto_titulo }}</td>
                                 <td>{{ $item->CategoriaProyecto->categoria_proyecto }}</td>
                                 @if($item->lineas_investigacion_id)
-                                    <td>{{ $item->LineaInvestigacion->lineas_investigacion }}</td>
+                                    @if($item->LineaInvestigacion->lineas_investigacion != null)
+                                        <td>{{ $item->LineaInvestigacion->lineas_investigacion_subarea }} / {{ $item->LineaInvestigacion->lineas_investigacion }}</td>
+                                    @else
+                                        <td>{{ $item->LineaInvestigacion->lineas_investigacion_subarea }}</td>
+                                    @endif
                                 @else
                                     <td></td>
                                 @endif

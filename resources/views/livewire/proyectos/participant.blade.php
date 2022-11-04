@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     @endif
-                    @if ($proyecto_investigacion == true)
+                    @if ($proyecto_investigacion == true && $persona_docente == 1)
                         <div class="mb-3 row">
                             <label class="col-md-3 col-form-label">Categoria Docente Investigación</label>
                             <div class="col-md-9">

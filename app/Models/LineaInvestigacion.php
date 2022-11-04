@@ -14,6 +14,7 @@ class LineaInvestigacion extends Model
     protected $table = 'lineas_investigacion';
     protected $fillable = [
         'lineas_investigacion_id',
+        'lineas_investigacion_subarea',
         'lineas_investigacion',
     ];
 

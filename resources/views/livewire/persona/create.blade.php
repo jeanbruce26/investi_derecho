@@ -65,6 +65,7 @@
                 <div class="col-md-9">
                     <select wire:model="grado_academico" class="form-select @error('grado_academico') is-invalid  @enderror" aria-label="Default select example">
                         <option value="" selected>Seleccione</option>
+                        <option>ESTUDIANTE</option>
                         <option>BACHILLER</option>
                         <option>MAGISTER</option>
                         <option>DOCTOR</option>
@@ -73,7 +74,7 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label class="col-md-3 col-form-label">Docente <span class="text-danger">*</span></label>
+                <label class="col-md-3 col-form-label">Docente </label>
                 <div class="col-md-9">
                     <div class="form-check form-switch">
                         <input class="form-check-input @error('docente') is-invalid  @enderror" type="checkbox" wire:model="docente">

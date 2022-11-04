@@ -70,7 +70,11 @@
                     <select wire:model="linea_investigacion" class="form-select @error('linea_investigacion') is-invalid  @enderror" aria-label="Default select example">
                         <option value="" selected>Seleccione</option>
                         @foreach ($lineas as $item)
-                        <option value="{{$item->lineas_investigacion_id}}">{{$item->lineas_investigacion}}</option>
+                            @if($item->lineas_investigacion != null)
+                                <option value="{{$item->lineas_investigacion_id}}">{{$item->lineas_investigacion_subarea}} / {{$item->lineas_investigacion}}</option>
+                            @else
+                                <option value="{{$item->lineas_investigacion_id}}">{{$item->lineas_investigacion_subarea}}</option>
+                            @endif
                         @endforeach
                     </select>
                     </select>
