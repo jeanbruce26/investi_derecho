@@ -24,6 +24,7 @@ class Create extends Component
     public $curso;
     public $semestre;
     public $linea_investigacion;
+    public $semillero;
 
     public function updated($propertyName){
         if($this->financiamiento == false){
@@ -49,7 +50,12 @@ class Create extends Component
             'curso' => 'nullable|string',
             'semestre' => 'nullable|string',
             'linea_investigacion' => 'nullable|numeric',
+            'semillero' => 'nullable|string',
         ]);
+
+        if($this->categoria != 3){
+            $this->reset('semillero');
+        }
 
         if($this->categoria != 7){
             $this->reset('curso','semestre');
@@ -61,21 +67,60 @@ class Create extends Component
         // dd($this->all());
 
         if($this->financiamiento == false){
-            $this->validate([
-                'titulo' => 'required|string',
-                'resumen' => 'nullable|string',
-                'categoria' => 'required|numeric',
-                'estado' => 'required|string',
-                'financiamiento' => 'nullable',
-                'tipo_financiamiento' => 'nullable|numeric',
-                'monto_financiamiento' => 'nullable|numeric',
-                'fecha_inicio' => 'required|date',
-                'fecha_fin' => 'nullable|date',
-                'convocatoria' => 'required|numeric',
-                'curso' => 'nullable|string',
-                'semestre' => 'nullable|string',
-                'linea_investigacion' => 'nullable|numeric',
-            ]);
+            if($this->categoria == 3){
+                $this->validate([
+                    'titulo' => 'required|string',
+                    'resumen' => 'nullable|string',
+                    'categoria' => 'required|numeric',
+                    'estado' => 'required|string',
+                    'financiamiento' => 'nullable',
+                    'tipo_financiamiento' => 'nullable|numeric',
+                    'monto_financiamiento' => 'nullable|numeric',
+                    'fecha_inicio' => 'required|date',
+                    'fecha_fin' => 'nullable|date',
+                    'convocatoria' => 'required|numeric',
+                    'curso' => 'nullable|string',
+                    'semestre' => 'nullable|string',
+                    'linea_investigacion' => 'nullable|numeric',
+                    'semillero' => 'required|string',
+                ]);
+            }else{
+                if($this->categoria == 7){
+                    $this->validate([
+                        'titulo' => 'required|string',
+                        'resumen' => 'nullable|string',
+                        'categoria' => 'required|numeric',
+                        'estado' => 'required|string',
+                        'financiamiento' => 'nullable',
+                        'fecha_inicio' => 'required|date',
+                        'fecha_fin' => 'nullable|date',
+                        'convocatoria' => 'required|numeric',
+                        'tipo_financiamiento' => 'required|numeric',
+                        'monto_financiamiento' => 'nullable|numeric',
+                        'curso' => 'required|string',
+                        'semestre' => 'required|string',
+                        'linea_investigacion' => 'nullable|numeric',
+                        'semillero' => 'nullable|string',
+                    ]);
+                }else{
+                    $this->validate([
+                        'titulo' => 'required|string',
+                        'resumen' => 'nullable|string',
+                        'categoria' => 'required|numeric',
+                        'estado' => 'required|string',
+                        'financiamiento' => 'nullable',
+                        'tipo_financiamiento' => 'nullable|numeric',
+                        'monto_financiamiento' => 'nullable|numeric',
+                        'fecha_inicio' => 'required|date',
+                        'fecha_fin' => 'nullable|date',
+                        'convocatoria' => 'required|numeric',
+                        'curso' => 'nullable|string',
+                        'semestre' => 'nullable|string',
+                        'linea_investigacion' => 'nullable|numeric',
+                        'semillero' => 'nullable|string',
+                    ]);
+                }
+            }
         }else{
             if($this->categoria == 7){
                 $this->validate([
@@ -92,8 +137,27 @@ class Create extends Component
                     'curso' => 'required|string',
                     'semestre' => 'required|string',
                     'linea_investigacion' => 'nullable|numeric',
+                    'semillero' => 'nullable|string',
                 ]);
             }else{
+                if($this->categoria == 3){
+                    $this->validate([
+                        'titulo' => 'required|string',
+                        'resumen' => 'nullable|string',
+                        'categoria' => 'required|numeric',
+                        'estado' => 'required|string',
+                        'financiamiento' => 'nullable',
+                        'fecha_inicio' => 'required|date',
+                        'fecha_fin' => 'nullable|date',
+                        'convocatoria' => 'required|numeric',
+                        'tipo_financiamiento' => 'required|numeric',
+                        'monto_financiamiento' => 'nullable|numeric',
+                        'curso' => 'nullable|string',
+                        'semestre' => 'nullable|string',
+                        'linea_investigacion' => 'nullable|numeric',
+                        'semillero' => 'required|string',
+                    ]);
+                }
                 $this->validate([
                     'titulo' => 'required|string',
                     'resumen' => 'nullable|string',
@@ -108,6 +172,7 @@ class Create extends Component
                     'curso' => 'nullable|string',
                     'semestre' => 'nullable|string',
                     'linea_investigacion' => 'nullable|numeric',
+                    'semillero' => 'nullable|string',
                 ]);
             }
         }
@@ -134,6 +199,9 @@ class Create extends Component
         if($this->categoria == 7){
             $proyecto->proyecto_curso = $this->curso;
             $proyecto->proyecto_semestre = str_replace(' ','',$this->semestre);
+        }
+        if($this->categoria == 3){
+            $proyecto->proyecto_semillero = $this->semillero;
         }
         $proyecto->save();
 

@@ -27,6 +27,7 @@ class Proyecto extends Model
         'proyecto_curso',
         'proyecto_semestre',
         'lineas_investigacion_id',
+        'proyecto_semillero',
     ];
 
     public $timestamps = false;

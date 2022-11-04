@@ -39,6 +39,15 @@
                     @error('categoria') <span class="error">{{ $message }}</span> @enderror
                 </div>
             </div>
+            @if ($categoria == 3)
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">Nombre del Semillero <span class="text-danger">*</span></label>
+                <div class="col-md-9">
+                    <input wire:model="semillero" class="form-control @error('semillero') is-invalid  @enderror" type="text" value="" placeholder="Ingrese el nombre del Semillero">
+                    @error('semillero') <span class="error">{{ $message }}</span> @enderror
+                </div>
+            </div>
+            @endif
             @if ($categoria == 7)
             <div class="mb-3 row">
                 <label class="col-md-3 col-form-label">Curso <span class="text-danger">*</span></label>

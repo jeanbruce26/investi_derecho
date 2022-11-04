@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label class="col-md-3 col-form-label">Resumen <span class="text-danger">*</span></label>
+                <label class="col-md-3 col-form-label">Resumen </label>
                 <div class="col-md-9">
                     <textarea wire:model="resumen" class="form-control @error('resumen') is-invalid  @enderror" placeholder="Ingrese el resumen del proyecto." style="height: 100px;"></textarea>
                     @error('resumen') <span class="error">{{ $message }}</span> @enderror
@@ -39,6 +39,15 @@
                     @error('categoria') <span class="error">{{ $message }}</span> @enderror
                 </div>
             </div>
+            @if($categoria == 3)
+            <div class="mb-3 row">
+                <label class="col-md-3 col-form-label">Nombre del Semillero<span class="text-danger">*</span></label>
+                <div class="col-md-9">
+                    <input wire:model="semillero" class="form-control @error('semillero') is-invalid  @enderror" type="text" value="" placeholder="Ingrese el nombre del Semillero">
+                    @error('semillero') <span class="error">{{ $message }}</span> @enderror
+                </div>
+            </div>
+            @endif
             @if ($categoria == 7)
             <div class="mb-3 row">
                 <label class="col-md-3 col-form-label">Curso <span class="text-danger">*</span></label>
@@ -56,7 +65,7 @@
             </div>
             @endif
             <div class="mb-3 row">
-                <label class="col-md-3 col-form-label">Linea de investigación <span class="text-danger">*</span></label>
+                <label class="col-md-3 col-form-label">Linea de investigación </label>
                 <div class="col-md-9">
                     <select wire:model="linea_investigacion" class="form-select @error('linea_investigacion') is-invalid  @enderror" aria-label="Default select example">
                         <option value="" selected>Seleccione</option>
@@ -116,7 +125,7 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label class="col-md-3 col-form-label">Mondo de financiamiento <span class="text-danger">*</span></label>
+                <label class="col-md-3 col-form-label">Mondo de financiamiento </label>
                 <div class="col-md-9">
                     <input wire:model="monto_financiamiento" class="form-control @error('monto_financiamiento') is-invalid  @enderror" type="number" value="" placeholder="Ingrese el monto del financiamiento">
                     @error('monto_financiamiento') <span class="error">{{ $message }}</span> @enderror
@@ -132,6 +141,7 @@
         </form>
     </div>
 </div>
+
 @push('js')
     <script>
         function mayus(e) {
