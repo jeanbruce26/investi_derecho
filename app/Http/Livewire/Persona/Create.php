@@ -82,6 +82,7 @@ class Create extends Component
             "persona_numero_documento" => $this->numero_documento,
             "persona_nombres" => $this->nombres,
             "persona_apellidos" => $this->apellidos,
+            "persona_nombre_completo" => $this->nombres." ".$this->apellidos,
             "persona_sexo" => $this->genero,
             "persona_correo" => $this->correo,
             "persona_celular" => $this->celular,

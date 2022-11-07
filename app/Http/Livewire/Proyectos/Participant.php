@@ -50,7 +50,7 @@ class Participant extends Component
     public function updated($propertyName)
     {
         if($this->persona){
-            $persona_modelo = Persona::where('persona_nombres',$this->persona)->first();
+            $persona_modelo = Persona::where('persona_nombre_completo',$this->persona)->first();
             if($persona_modelo ==  null){
                 $this->persona_docente = 0;
             }else{
@@ -77,7 +77,7 @@ class Participant extends Component
         $per_pro = PersonaProyecto::where('persona_proyecto_id', $persona_proyecto_id)->first();
         // dd($per_pro);
         $this->persona = $per_pro->persona_id;
-        $this->persona = $per_pro->Persona->persona_nombres;
+        $this->persona = $per_pro->Persona->persona_nombre_completo;
         $this->participante = $per_pro->participante_proyecto_id;
         $this->categoria_docente = $per_pro->categoria_docente_id;
         $this->categoria_investigacion = $per_pro->categoria_investigacion_id;
@@ -98,7 +98,7 @@ class Participant extends Component
     {
         // dd($this->all());
 
-        $per_id = Persona::where('persona_nombres',$this->persona)->first();
+        $per_id = Persona::where('persona_nombre_completo',$this->persona)->first();
 
         $this->validate([
             'persona' => 'required|string',

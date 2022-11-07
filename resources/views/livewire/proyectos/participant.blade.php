@@ -11,7 +11,7 @@
                             <datalist id="datalistOptions">
                                 <select class="form-control @error('persona') is-invalid  @enderror" wire:model="persona">
                                 @foreach ($personas as $item)
-                                <option value="{{ $item->persona_nombres }}">{{ $item->persona_apellidos }}</option>
+                                <option value="{{ $item->persona_nombre_completo }}">{{ $item->persona_grado }}</option>
                                 @endforeach
                                 </select>
                             </datalist>
@@ -113,7 +113,7 @@
                     @foreach ($persona_proyecto as $item)
                         <tr>
                             <td>{{ $num++ }}</td>
-                            <td>{{ $item->persona->persona_nombres }}, {{ $item->persona->persona_apellidos }}</td>
+                            <td>{{ $item->persona->persona_apellidos }}, {{ $item->persona->persona_nombres }}</td>
                             <td>{{ $item->ParticipanteProyecto->participante_proyecto }}</td>
                             @if ($item->categoria_docente_id)
                                 <td>{{ $item->CategoriaDocente->categoria_docente }}</td>

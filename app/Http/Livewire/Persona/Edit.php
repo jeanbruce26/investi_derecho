@@ -101,6 +101,7 @@ class Edit extends Component
         $persona->persona_numero_documento = $this->numero_documento;
         $persona->persona_nombres = $this->nombres;
         $persona->persona_apellidos = $this->apellidos;
+        $persona->persona_nombre_completo = $this->nombres." ".$this->apellidos;
         $persona->persona_sexo = $this->genero;
         $persona->persona_correo = $this->correo;
         $persona->persona_celular = $this->celular;

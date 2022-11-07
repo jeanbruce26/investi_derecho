@@ -18,6 +18,7 @@ class Persona extends Model
         'persona_numero_documento',
         'persona_nombres',
         'persona_apellidos',
+        'persona_nombre_completo',
         'persona_sexo',
         'persona_correo',
         'persona_celular',

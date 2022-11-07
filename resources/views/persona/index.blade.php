@@ -56,7 +56,7 @@ Persona
                     <tr>
                         <td>{{$item->persona_id}}</td>
                         <td>{{$item->persona_numero_documento}}</td>
-                        <td>{{$item->persona_nombres}}, {{$item->persona_apellidos}}</td>
+                        <td>{{$item->persona_apellidos}}, {{$item->persona_nombres}}</td>
                         <td>{{$item->persona_sexo}}</td>
                         <td>{{$item->persona_correo}}</td>
                         <td>{{$item->persona_grado}}</td>
