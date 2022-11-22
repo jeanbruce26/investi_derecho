@@ -10,124 +10,96 @@ use Livewire\Component;
 class Index extends Component
 {
     public $buscar;
-    public $revista;
-    public $fecha;
-    public $otros;
-    public $mostrar = 0;
     public $boton = 'Guardar';
+    public $modo = 1;
 
-    public function updated()
+    public $revista, $link, $categoria, $fecha, $proyecto_id;
+
+    public function updated($propertyName)
     {
-        if($this->revista){
-            $rev = Revista::where('revista_id',$this->revista)->first();
-            if($rev->revista == 'OTROS'){
-                $this->mostrar = 1;
-            }else{
-                $this->mostrar = 0;
-                $this->reset('otros');
-            }
-        }
-        if($this->revista == ''){
-            $this->mostrar = 0;
-        }
+        $this->validateOnly($propertyName, [
+            'revista' => 'nullable|string',
+            'link' => 'nullable|string',
+            'categoria' => 'nullable|numeric',
+            'fecha' => 'required|date',
+        ]);
     }
 
-    public function cargarId($id)
+    public function cargarId(Proyecto $proyecto)
     {
-        // $this->proyecto_id = $id;
-        $publi = Publicacion::where('proyecto_id',$id)->first();
-        // dd($publi);
-        $this->limpiar();
+        $this->proyecto_id = $proyecto->proyecto_id;
 
-        if($publi){
+        $publicacion = Publicacion::where('proyecto_id', $this->proyecto_id)->first();
+
+        if($publicacion){
+            $this->modo = 2;
+            $this->revista = $publicacion->publicacion_revista;
+            $this->link = $publicacion->publicacion_link;
+            $this->categoria = $publicacion->categoria_id;
+            $this->fecha = $publicacion->publicacion_fecha;
             $this->boton = 'Actualizar';
-
-            $this->revista = $publi->revista_id;
-            $rev = Revista::where('revista_id',$publi->revista_id)->first();
-            if($rev->revista == 'OTROS'){
-                $this->mostrar = 1;
-            }else{
-                $this->mostrar = 0;
-                $this->reset('otros');
-            }
-            $this->otros = $publi->revista_observacion;
-            $this->fecha = $publi->publicacion_fecha;
+        }else{
+            $this->modo = 1;
+            $this->boton = 'Guardar';
+            $this->limpiar();
         }
-
     }
 
     public function limpiar()
     {
-        $this->reset('revista','otros','fecha');
-        $this->mostrar = 0;
-        $this->boton = 'Guardar';
+        $this->reset(['revista', 'link', 'categoria', 'fecha']);
+        $this->resetErrorBag();
     }
 
-    public function publicacion($id)
+    public function publicacion()
     {
-        if($this->revista){
-            $rev = Revista::where('revista_id',$this->revista)->first();
-            if($rev->revista == 'OTROS'){
-                $this->validate([
-                    'otros' => 'required|string',
-                    'fecha' => 'required|date',
-                    'revista' => 'required|numeric',
-                ]);
-            }else{
-                $this->validate([
-                    'otros' => 'nullable|string',
-                    'fecha' => 'required|date',
-                    'revista' => 'required|numeric',
-                ]);
-            }
-        }
         $this->validate([
-            'otros' => 'nullable|string',
+            'revista' => 'nullable|string',
+            'link' => 'nullable|string',
+            'categoria' => 'nullable|numeric',
             'fecha' => 'required|date',
-            'revista' => 'required|numeric',
         ]);
 
-        $rev = Revista::where('revista_id',$this->revista)->first();
-        if($rev->revista != 'OTROS'){
-            $this->otros = $rev->revista;
-        }
-
-        $publi = Publicacion::where('proyecto_id',$id)->first();
-
-        if($publi){
-            $publicacion = Publicacion::where('proyecto_id',$id)->first();
-            $publicacion->publicacion_fecha = $this->fecha;
-            $publicacion->revista_id = $this->revista;
-            $publicacion->revista_observacion = $this->otros;
-            $publicacion->save();
-
-            session()->flash('message', 'Proyecto publicado actualizado satisfactoriamente.');
-        }else{
-            $publicacion = Publicacion::create([
-                "publicacion_fecha" => $this->fecha,
-                "revista_id" => $this->revista,
-                "revista_observacion" => $this->otros,
-                "proyecto_id" => $id,
+        if($this->modo == 1){
+            Publicacion::create([
+                'publicacion_fecha' => $this->fecha,
+                'categoria_id' => $this->categoria,
+                'publicacion_revista' => $this->revista,
+                'publicacion_link' => $this->link,
+                'proyecto_id' => $this->proyecto_id,
             ]);
 
-            session()->flash('message', 'Proyecto publicado satisfactoriamente.');
+            session()->flash('message', 'Publicación registrada con éxito.');
+        }else{
+            Publicacion::where('proyecto_id', $this->proyecto_id)->update([
+                'publicacion_fecha' => $this->fecha,
+                'categoria_id' => $this->categoria,
+                'publicacion_revista' => $this->revista,
+                'publicacion_link' => $this->link,
+            ]);
+
+            session()->flash('message', 'Publicación actualizada con éxito.');
         }
 
-        // dd($id, $this->all());
 
-        $this->dispatchBrowserEvent('publicacionModal', ['id' => $id]);
-        // $this->emit('publicacionModal',$id);
-
+        $this->dispatchBrowserEvent('publicacionModal');
         $this->limpiar();
     }
 
     public function render()
     {
-        $categoriaModel = Categoria::all(); // obtiene todos los datos de la tabla revista
-        $proyecto = Proyecto::join('categoria_proyecto','proyecto.categoria_proyecto_id','=','categoria_proyecto.categoria_proyecto_id')->where('proyecto.proyecto_titulo','LIKE',"%{$this->buscar}%")->orWhere('categoria_proyecto.categoria_proyecto','LIKE',"%{$this->buscar}%")->orWhere('proyecto.proyecto_id','LIKE',"%{$this->buscar}%")->orWhere('proyecto.proyecto_financiamiento','LIKE',"%{$this->buscar}%")->orderBy('proyecto.proyecto_id','DESC')->paginate(10);
+        $categoria_model = Categoria::all(); // obtiene todos los datos de la tabla categoria
+        $proyecto = Proyecto::join('categoria_proyecto','proyecto.categoria_proyecto_id','=','categoria_proyecto.categoria_proyecto_id')
+                ->where('proyecto.proyecto_titulo','LIKE',"%{$this->buscar}%")
+                ->orWhere('categoria_proyecto.categoria_proyecto','LIKE',"%{$this->buscar}%")
+                ->orWhere('proyecto.proyecto_id','LIKE',"%{$this->buscar}%")
+                ->orWhere('proyecto.proyecto_financiamiento','LIKE',"%{$this->buscar}%")
+                ->orderBy('proyecto.proyecto_id','DESC')
+                ->paginate(20);
+
         return view('livewire.proyectos.index',[
             'proyecto' => $proyecto,
-            'revistas' => $categoriaModel,
+            'categoria_model' => $categoria_model,
         ]);
     }
 }

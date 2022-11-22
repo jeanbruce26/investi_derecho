@@ -69,65 +69,9 @@
                                     @endif
                                 </td>
                                 <td align="center">
-                                    <a href="#editModal" type="button" class="link-warning fs-15" wire:click="cargarId({{$item->proyecto_id}})" data-bs-toggle="modal" data-bs-target="#editModal{{$item->proyecto_id}}">
+                                    <a href="#modalPuclicacion" type="button" class="link-warning fs-15" wire:click="cargarId({{$item->proyecto_id}})" data-bs-toggle="modal" data-bs-target="#modalPuclicacion">
                                         <i class='bx bx-book-bookmark bx-sm bx-burst-hover'></i>
                                     </a>
-
-                                    {{-- Modal Editar --}}
-                                    <div wire:ignore.self class="modal fade" id="editModal{{$item->proyecto_id}}" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Publicar Proyecto</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form>
-                                                        <div class="mb-3 row">
-                                                            <label class="col-md-2 col-form-label" style="text-align: left;">Revista <span class="text-danger">*</span></label>
-                                                            <div class="col-md-10" style="text-align: left;">
-                                                                <select wire:model="revista" class="form-select @error('revista') is-invalid  @enderror" aria-label="Default select example">
-                                                                    <option value="" selected>Seleccione</option>
-                                                                    @foreach ($revistas as $item2)
-                                                                    <option value="{{$item2->revista_id}}">{{$item2->revista}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                @error('revista') <span class="error" >{{ $message }}</span> @enderror
-                                                            </div>
-                                                        </div>
-                                                        @if ($mostrar == 1)
-                                                        <div class="mb-3 row">
-                                                            <label class="col-md-2 col-form-label" style="text-align: left;">Otros <span class="text-danger">*</span></label>
-                                                            <div class="col-md-10" style="text-align: left;">
-                                                                <input wire:model="otros" class="form-control @error('otros') is-invalid  @enderror" type="text" value="" placeholder="Ingrese otra revista">
-                                                                @error('otros') <span class="error" >{{ $message }}</span> @enderror
-                                                            </div>
-                                                        </div>
-                                                        @endif
-                                                        <div class="mb-3 row">
-                                                            <label class="col-md-2 col-form-label" style="text-align: left;">Link </label>
-                                                            <div class="col-md-10" style="text-align: left;">
-                                                                <input wire:model="link" class="form-control @error('link') is-invalid  @enderror" type="text" value="">
-                                                                @error('link') <span class="error" >{{ $message }}</span> @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3 row">
-                                                            <label class="col-md-2 col-form-label" style="text-align: left;">Fecha <span class="text-danger">*</span></label>
-                                                            <div class="col-md-10" style="text-align: left;">
-                                                                <input wire:model="fecha" class="form-control @error('fecha') is-invalid  @enderror" type="date" value="">
-                                                                @error('fecha') <span class="error" >{{ $message }}</span> @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer col-12 d-flex justify-content-between">
-                                                        <a type="button" class="btn btn-secondary d-flex justify-content-center align-items-center btn-x1" wire:click="limpiar()" data-bs-dismiss="modal">Cancelar</a>
-                                                        <button type="button" wire:click="publicacion({{$item->proyecto_id}})" class="btn btn-primary d-flex justify-content-center align-items-center btn-x1">{{$boton}}</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- Modal Editar --}}
                                 </td>
                                 <td align="center">
                                     <a href="{{ route('participante.edit', $item->proyecto_id) }}" type="button"
@@ -154,16 +98,65 @@
             @endif
         </div>
     </div>
+    {{-- Modal Editar --}}
+    <div wire:ignore.self class="modal fade" id="modalPuclicacion" tabindex="-1" aria-labelledby="modalPuclicacion" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Publicar Proyecto</h5>
+                    <button type="button" class="btn-close" wire:click="limpiar()" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label" style="text-align: left;">Revista</label>
+                            <div class="col-md-10" style="text-align: left;">
+                                <input wire:model="revista" class="form-control @error('revista') is-invalid  @enderror" type="text" value="" placeholder="Ingrese la revista">
+                                @error('revista') <span class="error" >{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label" style="text-align: left;">Link </label>
+                            <div class="col-md-10" style="text-align: left;">
+                                <input wire:model="link" class="form-control @error('link') is-invalid  @enderror" type="text" value="" placeholder="Ingrese el link de la revista">
+                                @error('link') <span class="error" >{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label" style="text-align: left;">Categoria</label>
+                            <div class="col-md-10" style="text-align: left;">
+                                <select wire:model="categoria" class="form-select @error('categoria') is-invalid  @enderror" aria-label="Default select example">
+                                    <option value="" selected>Seleccione</option>
+                                    @foreach ($categoria_model as $item2)
+                                    <option value="{{$item2->categoria_id}}">{{$item2->categoria}}</option>
+                                    @endforeach
+                                </select>
+                                @error('categoria') <span class="error" >{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-md-2 col-form-label" style="text-align: left;">Fecha <span class="text-danger">*</span></label>
+                            <div class="col-md-10" style="text-align: left;">
+                                <input wire:model="fecha" class="form-control @error('fecha') is-invalid  @enderror" type="date" value="">
+                                @error('fecha') <span class="error" >{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer col-12 d-flex justify-content-between">
+                        <a type="button" class="btn btn-secondary d-flex justify-content-center align-items-center btn-x1" wire:click="limpiar()" data-bs-dismiss="modal">Cancelar</a>
+                        <button type="button" wire:click="publicacion()" class="btn btn-primary d-flex justify-content-center align-items-center btn-x1">{{$boton}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Modal Editar --}}
 </div>
 
 @push('js')
 <script>
     window.addEventListener('publicacionModal', event => {
-        // alert('Name updated to: ' + event.detail.id);
-        var modal = '#editModal' + event.detail.id;
-        // alert(modal);
-        // $('#editModal'+event.detail.id).modal('hide');
-        $(modal).modal('hide');
+        $('#modalPuclicacion').modal('hide');
     })
 </script>
 @endpush
