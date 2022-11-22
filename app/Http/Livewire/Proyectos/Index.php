@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Proyectos;
 
 use App\Models\Proyecto;
 use App\Models\Publicacion;
-use App\Models\Revista;
+use App\Models\Categoria;
 use Livewire\Component;
 
 class Index extends Component
@@ -123,11 +123,11 @@ class Index extends Component
 
     public function render()
     {
-        $revistas = Revista::all(); // obtiene todos los datos de la tabla revista
+        $categoriaModel = Categoria::all(); // obtiene todos los datos de la tabla revista
         $proyecto = Proyecto::join('categoria_proyecto','proyecto.categoria_proyecto_id','=','categoria_proyecto.categoria_proyecto_id')->where('proyecto.proyecto_titulo','LIKE',"%{$this->buscar}%")->orWhere('categoria_proyecto.categoria_proyecto','LIKE',"%{$this->buscar}%")->orWhere('proyecto.proyecto_id','LIKE',"%{$this->buscar}%")->orWhere('proyecto.proyecto_financiamiento','LIKE',"%{$this->buscar}%")->orderBy('proyecto.proyecto_id','DESC')->paginate(10);
         return view('livewire.proyectos.index',[
             'proyecto' => $proyecto,
-            'revistas' => $revistas,
+            'revistas' => $categoriaModel,
         ]);
     }
 }

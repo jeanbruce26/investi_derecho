@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Revista extends Model
+class Categoria extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = "revista_id";
+    protected $primaryKey = "categoria_id";
 
-    protected $table = 'revista';
+    protected $table = 'categoria';
     protected $fillable = [
-        'revista_id',
-        'revista'
+        'categoria_id',
+        'categoria'
     ];
 
     public $timestamps = false;

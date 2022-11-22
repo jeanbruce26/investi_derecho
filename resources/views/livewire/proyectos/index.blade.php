@@ -105,6 +105,13 @@
                                                         </div>
                                                         @endif
                                                         <div class="mb-3 row">
+                                                            <label class="col-md-2 col-form-label" style="text-align: left;">Link </label>
+                                                            <div class="col-md-10" style="text-align: left;">
+                                                                <input wire:model="link" class="form-control @error('link') is-invalid  @enderror" type="text" value="">
+                                                                @error('link') <span class="error" >{{ $message }}</span> @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row">
                                                             <label class="col-md-2 col-form-label" style="text-align: left;">Fecha <span class="text-danger">*</span></label>
                                                             <div class="col-md-10" style="text-align: left;">
                                                                 <input wire:model="fecha" class="form-control @error('fecha') is-invalid  @enderror" type="date" value="">

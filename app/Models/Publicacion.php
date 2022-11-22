@@ -15,8 +15,9 @@ class Publicacion extends Model
     protected $fillable = [
         'publicacion_id',
         'publicacion_fecha',
-        'revista_id',
-        'revista_observacion',
+        'categoria_id',
+        'publicacion_revista',
+        'publicacion_link',
         'proyecto_id',
     ];
 
