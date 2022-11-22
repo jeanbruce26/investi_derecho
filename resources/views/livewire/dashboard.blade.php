@@ -12,15 +12,16 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-bordered dt-responsive nowrap text-dark"
+            <table class="table table-bordered dt-responsive table-centered nowrap text-dark "
                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead style="background-color: rgb(228, 228, 228)" class="text-center">
                     <tr>
-                        <th><strong>NRO</strong></th>
-                        <th class="col-md-5"><strong>TITULO</strong></th>
+                        <th><strong>#</strong></th>
+                        <th class="col-md-4"><strong>TITULO</strong></th>
                         <th><strong>CATEGORIA</strong></th>
                         <th><strong>ROL</strong></th>
                         <th><strong>TIPO</strong></th>
+                        <th class="col-md-1"><strong>FECHA PRESENTACIÓN</strong></th>
                     </tr>
                 </thead>
 
@@ -39,8 +40,9 @@
                                 <td align="center">{{ $num++ }}</td>
                                 <td>{{ $item->Proyecto->proyecto_titulo }}</td>
                                 <td>{{ $item->Proyecto->CategoriaProyecto->categoria_proyecto }}</td>
-                                <td>{{ $item->ParticipanteProyecto->participante_proyecto }}</td>
-                                <td>{{ $item->Proyecto->proyecto_financiamiento }}</td>
+                                <td align="center">{{ $item->ParticipanteProyecto->participante_proyecto }}</td>
+                                <td align="center">{{ $item->Proyecto->proyecto_financiamiento }}</td>
+                                <td align="center">{{ date('d/m/Y', strtotime($item->Proyecto->proyecto_fecha_presentacion)) }}</td>
                             </tr>
                         @endforeach
                     @endif
